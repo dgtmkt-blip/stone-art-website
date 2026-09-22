@@ -1,7 +1,45 @@
-# Stone Art Website
+# Stoneart — Website Redesign (v2)
 
-Company website for Stone Art — natural stone veneer by Panelart Decor Pvt Ltd, Kolkata.
+Premium architectural material brand site for **Stoneart** by **Panelart Decor Pvt Ltd**, Kolkata. Built with Next.js (App Router), TypeScript and Tailwind CSS.
 
-- Static HTML/CSS/JS
-- Supabase backend for the inquiry form
-- Hosted on Cloudflare Pages (connected to this repo)
+This branch (`redesign-v2`) is a ground-up redesign. It does not touch `main`, which still holds the live v1 static site.
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack)
+- **TypeScript**
+- **Tailwind CSS v4** (design tokens in `app/globals.css` via `@theme`)
+- **Supabase** — same `inquiries` table used by v1, for all enquiry/booking/contact forms
+
+## Getting started
+
+```bash
+npm install
+npm run dev
+```
+
+Copy `.env.example` to `.env.local` and fill in the Supabase project URL/anon key (see the team for the real values — they're the same ones used by v1).
+
+```bash
+npm run build   # production build
+npm run lint     # ESLint
+```
+
+## Content architecture — READ THIS BEFORE EDITING CONTENT
+
+All business content lives in `lib/data/`, separate from UI components:
+
+- `lib/data/products.ts` — the full product catalogue (**currently placeholder data** — see the file header comment)
+- `lib/data/projects.ts` — project gallery entries (**currently placeholder data**)
+- `lib/data/navigation.ts` — global nav + footer structure
+- `lib/data/site-settings.ts` — company info, contact details, material disclaimer
+
+To replace the placeholder catalogue with the real product list, edit `lib/data/products.ts` only — no component code should need to change, as long as the new data matches the `Product` shape in `lib/types.ts`.
+
+## Images
+
+No stock or competitor imagery is used anywhere. Every "photo" on the site is a CSS/SVG-generated stone-toned placeholder (`components/StoneSwatch.tsx`), driven by a `tone` + `alt` prop on each data entry. Swap in real photography by replacing `StoneSwatch` usages with `next/image` once approved assets exist — the data layer already carries `alt` text for every image slot.
+
+## Deployment
+
+Not yet deployed. Hosting is Cloudflare Pages (same account as v1). Since this is now a Next.js app (not static HTML), the Cloudflare Pages project will need the **Next.js** framework preset (via `@cloudflare/next-on-pages` or the Workers-based Next.js adapter) rather than v1's "Framework preset: None" static config — that's a deployment-time decision, not something this branch changes.
