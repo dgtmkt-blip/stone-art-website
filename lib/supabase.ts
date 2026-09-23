@@ -1,27 +1,19 @@
 /**
- * Minimal Supabase REST client for the enquiry system — no SDK dependency,
- * mirrors the verified v1 integration (POST to /rest/v1/inquiries with the
- * anon/publishable key, RLS restricts it to insert-only).
+ * Minimal Supabase REST client — no SDK dependency, mirrors the verified v1
+ * integration (POST to /rest/v1/<table> with the anon/publishable key, RLS
+ * restricts every table below to insert-only for anonymous visitors).
  *
- * The `inquiries` table only has: name, email, phone, company, message,
- * source. There is no dedicated "product" column, so product-context
- * enquiries (from a product detail page) fold the product name/code into
- * the message body and tag `source` accordingly — this keeps the schema
- * untouched while still being traceable in the data.
+ * Two tables:
+ * - `leads`: the Contact page's dedicated table (name, email, phone,
+ *   company, city, country, subject, message, source, status).
+ * - `inquiries`: the older table (name, email, phone, company, message,
+ *   source only) still used by Booking and product-detail enquiries. It has
+ *   no dedicated columns for subject/city/country/profession/product, so
+ *   those fold into the message body — see buildContextualMessage.
  */
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-export interface EnquiryPayload {
-  name: string;
-  email?: string;
-  phone?: string;
-  company?: string;
-  message: string;
-  /** Identifies which form/page the enquiry originated from. */
-  source: string;
-}
 
 export class SupabaseNotConfiguredError extends Error {
   constructor() {
@@ -30,12 +22,12 @@ export class SupabaseNotConfiguredError extends Error {
   }
 }
 
-export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
+async function postToTable(table: string, payload: object): Promise<void> {
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     throw new SupabaseNotConfiguredError();
   }
 
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/inquiries`, {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -47,15 +39,45 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
   });
 
   if (!res.ok) {
-    throw new Error(`Enquiry submission failed: ${res.status}`);
+    throw new Error(`Submission to ${table} failed: ${res.status}`);
   }
 }
 
-/** Builds a message body that folds product context into the free-text field. */
-export function buildProductEnquiryMessage(
-  userMessage: string,
-  product: { name: string; productCode: string }
-): string {
-  const header = `Product enquiry: ${product.name} (${product.productCode})`;
-  return userMessage.trim() ? `${header}\n\n${userMessage.trim()}` : header;
+export interface LeadPayload {
+  name: string;
+  email?: string;
+  phone?: string;
+  company?: string;
+  city?: string;
+  country?: string;
+  subject?: string;
+  message: string;
+  /** Identifies which form/page the lead originated from. */
+  source: string;
+}
+
+/** Contact page — writes to the dedicated `leads` table. */
+export async function submitLead(payload: LeadPayload): Promise<void> {
+  return postToTable("leads", payload);
+}
+
+export interface EnquiryPayload {
+  name: string;
+  email?: string;
+  phone?: string;
+  company?: string;
+  message: string;
+  /** Identifies which form/page the enquiry originated from. */
+  source: string;
+}
+
+/** Booking / product-detail enquiries — writes to the older `inquiries` table. */
+export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
+  return postToTable("inquiries", payload);
+}
+
+/** Folds extra context (product, profession, location...) into a labelled message body. */
+export function buildContextualMessage(lines: (string | false | undefined)[], userMessage: string): string {
+  const context = lines.filter((l): l is string => Boolean(l));
+  return [...context, "", userMessage.trim()].join("\n");
 }

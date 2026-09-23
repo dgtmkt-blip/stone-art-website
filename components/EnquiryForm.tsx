@@ -1,18 +1,18 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { submitEnquiry, SupabaseNotConfiguredError } from "@/lib/supabase";
+import { buildContextualMessage, submitEnquiry, submitLead, SupabaseNotConfiguredError } from "@/lib/supabase";
 
 /**
  * Shared enquiry form used by /booking, /contact and product detail pages.
- * Submits to the SAME real Supabase `inquiries` table verified for v1 — this
- * is a live backend, not a mock handler, so the success state reflects an
- * actual received enquiry.
+ * Submits to real Supabase tables — this is a live backend, not a mock
+ * handler, so the success state reflects an actual received submission.
  *
- * The `inquiries` table has no dedicated columns for subject/city/country/
- * profession/product — those are folded into the `message` field as
- * labelled lines so nothing the visitor enters is lost, while the schema
- * stays untouched. Swap in a richer backend later without changing the UI.
+ * - Contact page (`variant="contact"`) writes to the dedicated `leads`
+ *   table, which has real columns for city/country/subject.
+ * - Booking and product-detail enquiries write to the older `inquiries`
+ *   table, which has no dedicated columns for that extra context, so it
+ *   gets folded into the `message` field as labelled lines instead.
  */
 
 type Variant = "booking" | "contact" | "product";
@@ -75,26 +75,40 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
     setStatus("submitting");
     setError(null);
 
-    const contextLines = [
-      product && `Product enquiry: ${product.name} (${product.productCode})`,
-      variant === "booking" && values.profession && `Profession: ${values.profession}`,
-      values.productInterest && !product && `Product interest: ${values.productInterest}`,
-      variant === "contact" && values.subject && `Subject: ${values.subject}`,
-      (values.city || values.country) &&
-        `Location: ${[values.city, values.country].filter(Boolean).join(", ")}`,
-    ].filter(Boolean);
-
-    const fullMessage = [...contextLines, "", values.message.trim()].filter((l) => l !== undefined).join("\n");
-
     try {
-      await submitEnquiry({
-        name: values.name.trim(),
-        email: values.email.trim() || undefined,
-        phone: values.phone.trim() || undefined,
-        company: values.company.trim() || undefined,
-        message: fullMessage,
-        source,
-      });
+      if (variant === "contact") {
+        await submitLead({
+          name: values.name.trim(),
+          email: values.email.trim() || undefined,
+          phone: values.phone.trim() || undefined,
+          company: values.company.trim() || undefined,
+          city: values.city.trim() || undefined,
+          country: values.country.trim() || undefined,
+          subject: values.subject.trim() || undefined,
+          message: values.message.trim(),
+          source,
+        });
+      } else {
+        const fullMessage = buildContextualMessage(
+          [
+            product && `Product enquiry: ${product.name} (${product.productCode})`,
+            variant === "booking" && values.profession && `Profession: ${values.profession}`,
+            values.productInterest && !product && `Product interest: ${values.productInterest}`,
+            (values.city || values.country) &&
+              `Location: ${[values.city, values.country].filter(Boolean).join(", ")}`,
+          ],
+          values.message
+        );
+
+        await submitEnquiry({
+          name: values.name.trim(),
+          email: values.email.trim() || undefined,
+          phone: values.phone.trim() || undefined,
+          company: values.company.trim() || undefined,
+          message: fullMessage,
+          source,
+        });
+      }
       setStatus("success");
     } catch (err) {
       setStatus("error");
