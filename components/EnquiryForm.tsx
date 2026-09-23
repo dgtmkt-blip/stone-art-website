@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
-import { CountryFlag } from "@/components/CountryFlag";
+import { useState, type FormEvent } from "react";
 import { CountrySelect } from "@/components/CountrySelect";
+import { PhoneCountryPicker } from "@/components/PhoneCountryPicker";
 import { findCountryByName, type Country } from "@/lib/data/countries";
 import { buildContextualMessage, submitEnquiry, submitLead, SupabaseNotConfiguredError } from "@/lib/supabase";
 
@@ -39,7 +39,6 @@ const PROFESSIONS = [
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DEFAULT_COUNTRY = findCountryByName("India") ?? null;
-const defaultPhonePrefix = DEFAULT_COUNTRY ? `+${DEFAULT_COUNTRY.dialCode} ` : "";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -47,10 +46,17 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [country, setCountry] = useState<Country | null>(DEFAULT_COUNTRY);
+
+  // The phone's country code is its own independent dropdown. It starts
+  // synced to the Country field above, but once someone picks a different
+  // code here directly, it stops following Country — tracked via `phoneCodeCustomized`.
+  const [phoneCountry, setPhoneCountry] = useState<Country | null>(DEFAULT_COUNTRY);
+  const [phoneCodeCustomized, setPhoneCodeCustomized] = useState(false);
+
   const [values, setValues] = useState({
     name: "",
     email: "",
-    phone: defaultPhonePrefix,
+    phone: "",
     company: "",
     city: "",
     profession: "",
@@ -61,26 +67,20 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
   const [touched, setTouched] = useState(false);
   const [emailTouched, setEmailTouched] = useState(false);
 
-  // Tracks the last value WE wrote into the phone field, so switching country
-  // only overwrites an auto-filled code — never a number the visitor typed.
-  const autoFilledPhoneRef = useRef(defaultPhonePrefix);
-
   function update<K extends keyof typeof values>(key: K, value: string) {
     setValues((v) => ({ ...v, [key]: value }));
   }
 
   function handleCountryChange(next: Country) {
-    const prefix = `+${next.dialCode} `;
-    // Checked against render-scope `values` (not inside the setValues updater):
-    // mutating the ref inside an updater is impure and Strict Mode's dev-only
-    // double-invocation of updaters would silently discard the change.
-    const shouldAutoFill = values.phone.trim() === "" || values.phone === autoFilledPhoneRef.current;
-
     setCountry(next);
-    if (shouldAutoFill) {
-      autoFilledPhoneRef.current = prefix;
-      setValues((v) => ({ ...v, phone: prefix }));
+    if (!phoneCodeCustomized) {
+      setPhoneCountry(next);
     }
+  }
+
+  function handlePhoneCountryChange(next: Country) {
+    setPhoneCountry(next);
+    setPhoneCodeCustomized(true);
   }
 
   const nameError = touched && !values.name.trim() ? "Name is required." : null;
@@ -102,12 +102,15 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
     setStatus("submitting");
     setError(null);
 
+    const phoneDigits = values.phone.trim();
+    const fullPhone = phoneDigits ? `+${phoneCountry?.dialCode ?? ""} ${phoneDigits}`.trim() : "";
+
     try {
       if (variant === "contact") {
         await submitLead({
           name: values.name.trim(),
           email: values.email.trim() || undefined,
-          phone: values.phone.trim() || undefined,
+          phone: fullPhone || undefined,
           company: values.company.trim() || undefined,
           city: values.city.trim() || undefined,
           country: country?.name,
@@ -130,7 +133,7 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
         await submitEnquiry({
           name: values.name.trim(),
           email: values.email.trim() || undefined,
-          phone: values.phone.trim() || undefined,
+          phone: fullPhone || undefined,
           company: values.company.trim() || undefined,
           message: fullMessage,
           source,
@@ -217,14 +220,16 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
           />
         </Field>
         <Field label="Phone">
-          <div className="flex items-center gap-2 border border-stone-300 bg-white px-4 py-3 transition-colors focus-within:border-stone-900">
-            {country && <CountryFlag iso2={country.iso2} className="h-3.5 w-5 shrink-0 rounded-[1px]" />}
+          <div className="flex items-center gap-3 border border-stone-300 bg-white px-4 py-3 transition-colors focus-within:border-stone-900">
+            <PhoneCountryPicker value={phoneCountry} onChange={handlePhoneCountryChange} />
+            <span aria-hidden className="h-5 w-px bg-stone-200" />
             <input
               type="tel"
               value={values.phone}
               onChange={(e) => update("phone", e.target.value)}
+              placeholder="98765 43210"
               className="w-full text-[15px] text-stone-900 outline-none"
-              autoComplete="tel"
+              autoComplete="tel-national"
             />
           </div>
         </Field>
