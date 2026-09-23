@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
+import { Logo } from "@/components/Logo";
 import { footerNav } from "@/lib/data/navigation";
 import { siteSettings } from "@/lib/data/site-settings";
 
@@ -9,8 +10,8 @@ export function Footer() {
       <Container wide>
         <div className="grid grid-cols-1 gap-12 border-b border-stone-700 pb-16 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href="/" className="font-display text-[24px] text-stone-50">
-              STONEART
+            <Link href="/" className="inline-block">
+              <Logo variant="white-tagline" className="h-11" />
             </Link>
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-stone-400">
               {siteSettings.tagline} A brand of {siteSettings.company}.
