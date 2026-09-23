@@ -120,10 +120,7 @@ export default async function ProjectDetailPage(props: PageProps<"/projects/[slu
         eyebrow="Start Your Project"
         title="Let's build something remarkable."
         tone={project.coverTone}
-        actions={[
-          { label: "Contact Us", href: "/contact" },
-          { label: "Book / Enquire", href: "/booking", variant: "outline-light" },
-        ]}
+        actions={[{ label: "Contact Us", href: "/contact" }]}
       />
     </>
   );

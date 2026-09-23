@@ -20,8 +20,8 @@ export default function PrivacyPage() {
           <p className="text-[15px] leading-relaxed text-stone-600">
             This page is a placeholder. Stoneart / Panelart Decor Pvt Ltd&rsquo;s final privacy
             policy — covering what information is collected through this site (including the
-            enquiry and booking forms), how it is used and how it is stored — will be published
-            here once approved.
+            enquiry forms), how it is used and how it is stored — will be published here once
+            approved.
           </p>
           <p className="mt-4 text-[15px] leading-relaxed text-stone-600">
             In the meantime, for any question about data submitted through this site, please{" "}

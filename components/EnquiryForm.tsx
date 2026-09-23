@@ -7,42 +7,31 @@ import { findCountryByName, type Country } from "@/lib/data/countries";
 import { buildContextualMessage, submitEnquiry, submitLead, SupabaseNotConfiguredError } from "@/lib/supabase";
 
 /**
- * Shared enquiry form used by /booking, /contact and product detail pages.
- * Submits to real Supabase tables — this is a live backend, not a mock
- * handler, so the success state reflects an actual received submission.
+ * Shared enquiry form used by /contact and product detail pages. Submits to
+ * real Supabase tables — this is a live backend, not a mock handler, so the
+ * success state reflects an actual received submission.
  *
  * - Contact page (`variant="contact"`) writes to the dedicated `leads`
  *   table, which has real columns for city/country/subject.
- * - Booking and product-detail enquiries write to the older `inquiries`
- *   table, which has no dedicated columns for that extra context, so it
- *   gets folded into the `message` field as labelled lines instead.
+ * - Product-detail enquiries write to the older `inquiries` table, which
+ *   has no dedicated columns for product context, so it gets folded into
+ *   the `message` field as a labelled line instead.
  */
 
-type Variant = "booking" | "contact" | "product";
+type Variant = "contact" | "product";
 
 interface EnquiryFormProps {
   variant: Variant;
   source: string;
   product?: { name: string; productCode: string };
-  productOptions?: string[];
 }
-
-const PROFESSIONS = [
-  "Architect",
-  "Interior Designer",
-  "Contractor",
-  "Dealer / Distributor",
-  "Builder / Developer",
-  "Homeowner",
-  "Other",
-];
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DEFAULT_COUNTRY = findCountryByName("India") ?? null;
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function EnquiryForm({ variant, source, product, productOptions }: EnquiryFormProps) {
+export function EnquiryForm({ variant, source, product }: EnquiryFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [country, setCountry] = useState<Country | null>(DEFAULT_COUNTRY);
@@ -59,8 +48,6 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
     phone: "",
     company: "",
     city: "",
-    profession: "",
-    productInterest: product?.name ?? "",
     subject: "",
     message: "",
   });
@@ -120,13 +107,7 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
         });
       } else {
         const fullMessage = buildContextualMessage(
-          [
-            product && `Product enquiry: ${product.name} (${product.productCode})`,
-            variant === "booking" && values.profession && `Profession: ${values.profession}`,
-            values.productInterest && !product && `Product interest: ${values.productInterest}`,
-            Boolean(values.city || country) &&
-              `Location: ${[values.city, country?.name].filter(Boolean).join(", ")}`,
-          ],
+          [product && `Product enquiry: ${product.name} (${product.productCode})`],
           values.message
         );
 
@@ -161,8 +142,6 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
     );
   }
 
-  const showLocation = variant === "booking" || variant === "contact";
-
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
       {product && (
@@ -191,7 +170,7 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
           />
         </Field>
 
-        {showLocation && (
+        {variant === "contact" && (
           <>
             <Field label="City">
               <input
@@ -234,36 +213,6 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
           </div>
         </Field>
 
-        {variant === "booking" && (
-          <Field label="Profession">
-            <select
-              value={values.profession}
-              onChange={(e) => update("profession", e.target.value)}
-              className={inputClass(false)}
-            >
-              <option value="">Select…</option>
-              {PROFESSIONS.map((p) => (
-                <option key={p} value={p}>{p}</option>
-              ))}
-            </select>
-          </Field>
-        )}
-
-        {variant === "booking" && !product && (
-          <Field label="Product Interest">
-            <select
-              value={values.productInterest}
-              onChange={(e) => update("productInterest", e.target.value)}
-              className={inputClass(false)}
-            >
-              <option value="">Select…</option>
-              {(productOptions ?? []).map((p) => (
-                <option key={p} value={p}>{p}</option>
-              ))}
-            </select>
-          </Field>
-        )}
-
         {variant === "contact" && (
           <Field label="Subject" className="sm:col-span-2">
             <input
@@ -276,7 +225,7 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
         )}
       </div>
 
-      <Field label={variant === "booking" ? "Your Requirement *" : "Message *"} error={messageError}>
+      <Field label="Message *" error={messageError}>
         <textarea
           value={values.message}
           onChange={(e) => update("message", e.target.value)}

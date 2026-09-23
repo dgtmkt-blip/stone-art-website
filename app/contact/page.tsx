@@ -47,6 +47,14 @@ export default function ContactPage() {
                   </a>
                 ))}
               </div>
+              {siteSettings.contact.email && (
+                <div>
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-stone-500">Email</h3>
+                  <a href={`mailto:${siteSettings.contact.email}`} className="mt-2 block text-[15px] text-stone-800 hover:text-ember">
+                    {siteSettings.contact.email}
+                  </a>
+                </div>
+              )}
               <div>
                 <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-stone-500">Hours</h3>
                 <p className="mt-2 text-[15px] text-stone-800">{siteSettings.contact.hours}</p>

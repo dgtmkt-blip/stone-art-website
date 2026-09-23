@@ -7,9 +7,9 @@
  * - `leads`: the Contact page's dedicated table (name, email, phone,
  *   company, city, country, subject, message, source, status).
  * - `inquiries`: the older table (name, email, phone, company, message,
- *   source only) still used by Booking and product-detail enquiries. It has
- *   no dedicated columns for subject/city/country/profession/product, so
- *   those fold into the message body — see buildContextualMessage.
+ *   source only) still used by product-detail enquiries. It has no
+ *   dedicated column for product context, so that folds into the message
+ *   body — see buildContextualMessage.
  */
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -71,7 +71,7 @@ export interface EnquiryPayload {
   source: string;
 }
 
-/** Booking / product-detail enquiries — writes to the older `inquiries` table. */
+/** Product-detail enquiries — writes to the older `inquiries` table. */
 export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
   return postToTable("inquiries", payload);
 }

@@ -40,6 +40,13 @@ export function Footer() {
                 </a>
               ))}
             </p>
+            {siteSettings.contact.email && (
+              <p className="mt-2 text-[14px]">
+                <a href={`mailto:${siteSettings.contact.email}`} className="text-stone-300 hover:text-ember-light">
+                  {siteSettings.contact.email}
+                </a>
+              </p>
+            )}
           </div>
           <div>
             <h4 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-stone-50">
@@ -49,10 +56,10 @@ export function Footer() {
               {siteSettings.contact.hours}
             </p>
             <Link
-              href="/booking"
+              href="/contact"
               className="mt-4 inline-block text-[14px] font-medium text-ember-light hover:underline"
             >
-              Book a Consultation →
+              Get in Touch →
             </Link>
           </div>
         </div>

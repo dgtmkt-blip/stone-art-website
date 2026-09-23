@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { StoneSwatch } from "@/components/StoneSwatch";
 import { getFeaturedProducts } from "@/lib/data/products";
 import { projects } from "@/lib/data/projects";
+import { siteSettings } from "@/lib/data/site-settings";
 
 const whyStoneartFeatures = [
   {
@@ -257,7 +258,9 @@ export default function HomePage() {
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
               <Button href="/contact">Contact Us</Button>
-              <Button href="/booking" variant="secondary">Book / Enquire</Button>
+              <Button href={`tel:${siteSettings.contact.phones[0].replace(/\s+/g, "")}`} variant="secondary">
+                Call Us
+              </Button>
             </div>
           </Reveal>
         </Container>

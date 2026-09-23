@@ -38,7 +38,7 @@ export const mainNav: NavItem[] = [
     ],
   },
   { label: "Manufacturing", href: "/manufacturing" },
-  { label: "Booking", href: "/booking" },
+  { label: "Backing", href: "/backing" },
   { label: "Packing", href: "/packing" },
   { label: "Installation", href: "/installation" },
   { label: "Projects", href: "/projects" },
@@ -57,6 +57,7 @@ export const footerNav = {
   ],
   resources: [
     { label: "Manufacturing", href: "/manufacturing" },
+    { label: "Backing", href: "/backing" },
     { label: "Packing", href: "/packing" },
     { label: "Installation", href: "/installation" },
     { label: "Projects", href: "/projects" },

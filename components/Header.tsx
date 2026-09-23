@@ -186,10 +186,10 @@ export function Header() {
             </div>
           ))}
           <Link
-            href="/booking"
+            href="/contact"
             className="mt-8 inline-flex items-center justify-center bg-stone-900 px-7 py-4 text-center text-[13px] font-semibold uppercase tracking-[0.12em] text-stone-50"
           >
-            Book / Enquire
+            Enquire Now
           </Link>
         </div>
       </div>

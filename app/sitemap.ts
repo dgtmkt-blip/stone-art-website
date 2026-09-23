@@ -14,7 +14,7 @@ const staticRoutes = [
   "/about/why-stoneart",
   "/about/technical-data",
   "/manufacturing",
-  "/booking",
+  "/backing",
   "/packing",
   "/installation",
   "/projects",
