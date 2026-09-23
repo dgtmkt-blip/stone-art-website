@@ -42,7 +42,7 @@ const applicationStories: { title: string; tone: "slate" | "clay" | "charcoal" |
   { title: "Feature Walls", tone: "slate" },
   { title: "Hospitality Interiors", tone: "clay" },
   { title: "Curved Surfaces", tone: "silver" },
-  { title: "Furniture", tone: "sand" },
+  { title: "Living Room", tone: "sand" },
   { title: "Commercial Spaces", tone: "charcoal" },
 ];
 
