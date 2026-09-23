@@ -1,24 +1,33 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
+/**
+ * Self-hosted (not next/font/google) — the Google Fonts build-time fetch is
+ * unreliable in some environments (proxies, CI network policies, rate
+ * limits) and there's no reason to depend on it. Files are the same Inter
+ * and Fraunces variable fonts Google serves, downloaded once into
+ * public/fonts/. Each is a single variable-font file covering its whole
+ * weight range, declared with a weight range so specific font-weight values
+ * used elsewhere in the CSS resolve to the right instance.
+ */
+const fraunces = localFont({
   variable: "--font-display-loaded",
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
   display: "swap",
+  src: [
+    { path: "../public/fonts/fraunces-variable.woff2", weight: "400 600", style: "normal" },
+    { path: "../public/fonts/fraunces-italic-variable.woff2", weight: "400 600", style: "italic" },
+  ],
 });
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
   variable: "--font-sans-loaded",
-  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  src: [{ path: "../public/fonts/inter-variable.woff2", weight: "300 700", style: "normal" }],
 });
 
 export const metadata: Metadata = {
