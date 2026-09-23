@@ -1,6 +1,9 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
+import { CountryFlag } from "@/components/CountryFlag";
+import { CountrySelect } from "@/components/CountrySelect";
+import { findCountryByName, type Country } from "@/lib/data/countries";
 import { buildContextualMessage, submitEnquiry, submitLead, SupabaseNotConfiguredError } from "@/lib/supabase";
 
 /**
@@ -34,39 +37,63 @@ const PROFESSIONS = [
   "Other",
 ];
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const DEFAULT_COUNTRY = findCountryByName("India") ?? null;
+const defaultPhonePrefix = DEFAULT_COUNTRY ? `+${DEFAULT_COUNTRY.dialCode} ` : "";
+
 type Status = "idle" | "submitting" | "success" | "error";
 
 export function EnquiryForm({ variant, source, product, productOptions }: EnquiryFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [country, setCountry] = useState<Country | null>(DEFAULT_COUNTRY);
   const [values, setValues] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone: defaultPhonePrefix,
     company: "",
     city: "",
-    country: "",
     profession: "",
     productInterest: product?.name ?? "",
     subject: "",
     message: "",
   });
   const [touched, setTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
+
+  // Tracks the last value WE wrote into the phone field, so switching country
+  // only overwrites an auto-filled code — never a number the visitor typed.
+  const autoFilledPhoneRef = useRef(defaultPhonePrefix);
 
   function update<K extends keyof typeof values>(key: K, value: string) {
     setValues((v) => ({ ...v, [key]: value }));
   }
 
+  function handleCountryChange(next: Country) {
+    const prefix = `+${next.dialCode} `;
+    // Checked against render-scope `values` (not inside the setValues updater):
+    // mutating the ref inside an updater is impure and Strict Mode's dev-only
+    // double-invocation of updaters would silently discard the change.
+    const shouldAutoFill = values.phone.trim() === "" || values.phone === autoFilledPhoneRef.current;
+
+    setCountry(next);
+    if (shouldAutoFill) {
+      autoFilledPhoneRef.current = prefix;
+      setValues((v) => ({ ...v, phone: prefix }));
+    }
+  }
+
   const nameError = touched && !values.name.trim() ? "Name is required." : null;
   const messageError = touched && !values.message.trim() ? "Please tell us about your requirement." : null;
   const emailError =
-    touched && values.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())
+    (touched || emailTouched) && values.email.trim() && !EMAIL_PATTERN.test(values.email.trim())
       ? "Enter a valid email address."
       : null;
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setTouched(true);
+    setEmailTouched(true);
 
     if (!values.name.trim() || !values.message.trim() || emailError) {
       return;
@@ -83,7 +110,7 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
           phone: values.phone.trim() || undefined,
           company: values.company.trim() || undefined,
           city: values.city.trim() || undefined,
-          country: values.country.trim() || undefined,
+          country: country?.name,
           subject: values.subject.trim() || undefined,
           message: values.message.trim(),
           source,
@@ -94,8 +121,8 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
             product && `Product enquiry: ${product.name} (${product.productCode})`,
             variant === "booking" && values.profession && `Profession: ${values.profession}`,
             values.productInterest && !product && `Product interest: ${values.productInterest}`,
-            (values.city || values.country) &&
-              `Location: ${[values.city, values.country].filter(Boolean).join(", ")}`,
+            Boolean(values.city || country) &&
+              `Location: ${[values.city, country?.name].filter(Boolean).join(", ")}`,
           ],
           values.message
         );
@@ -131,6 +158,8 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
     );
   }
 
+  const showLocation = variant === "booking" || variant === "contact";
+
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
       {product && (
@@ -158,26 +187,8 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
             autoComplete="organization"
           />
         </Field>
-        <Field label="Email" error={emailError}>
-          <input
-            type="email"
-            value={values.email}
-            onChange={(e) => update("email", e.target.value)}
-            className={inputClass(!!emailError)}
-            autoComplete="email"
-          />
-        </Field>
-        <Field label="Phone">
-          <input
-            type="tel"
-            value={values.phone}
-            onChange={(e) => update("phone", e.target.value)}
-            className={inputClass(false)}
-            autoComplete="tel"
-          />
-        </Field>
 
-        {(variant === "booking" || variant === "contact") && (
+        {showLocation && (
           <>
             <Field label="City">
               <input
@@ -189,16 +200,34 @@ export function EnquiryForm({ variant, source, product, productOptions }: Enquir
               />
             </Field>
             <Field label="Country">
-              <input
-                type="text"
-                value={values.country}
-                onChange={(e) => update("country", e.target.value)}
-                className={inputClass(false)}
-                autoComplete="country-name"
-              />
+              <CountrySelect id="enquiry-country" value={country} onChange={handleCountryChange} />
             </Field>
           </>
         )}
+
+        <Field label="Email" error={emailError}>
+          <input
+            type="email"
+            value={values.email}
+            onChange={(e) => update("email", e.target.value)}
+            onBlur={() => setEmailTouched(true)}
+            className={inputClass(!!emailError)}
+            autoComplete="email"
+            placeholder="you@example.com"
+          />
+        </Field>
+        <Field label="Phone">
+          <div className="flex items-center gap-2 border border-stone-300 bg-white px-4 py-3 transition-colors focus-within:border-stone-900">
+            {country && <CountryFlag iso2={country.iso2} className="h-3.5 w-5 shrink-0 rounded-[1px]" />}
+            <input
+              type="tel"
+              value={values.phone}
+              onChange={(e) => update("phone", e.target.value)}
+              className="w-full text-[15px] text-stone-900 outline-none"
+              autoComplete="tel"
+            />
+          </div>
+        </Field>
 
         {variant === "booking" && (
           <Field label="Profession">
