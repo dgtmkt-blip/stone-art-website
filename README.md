@@ -9,7 +9,7 @@ This branch (`redesign-v2`) is a ground-up redesign. It does not touch `main`, w
 - **Next.js 16** (App Router, Turbopack)
 - **TypeScript**
 - **Tailwind CSS v4** (design tokens in `app/globals.css` via `@theme`)
-- **Supabase** — same `inquiries` table used by v1, for all enquiry/booking/contact forms
+- **Supabase** — `leads` table for the Contact page, `inquiries` table (same one v1 used) for product enquiries
 
 ## Getting started
 
@@ -42,4 +42,4 @@ No stock or competitor imagery is used anywhere. Every "photo" on the site is a 
 
 ## Deployment
 
-Not yet deployed. Hosting is Cloudflare Pages (same account as v1). Since this is now a Next.js app (not static HTML), the Cloudflare Pages project will need the **Next.js** framework preset (via `@cloudflare/next-on-pages` or the Workers-based Next.js adapter) rather than v1's "Framework preset: None" static config — that's a deployment-time decision, not something this branch changes.
+Deployed as a **static export** (`output: "export"` in `next.config.ts` — the site has no server-only features, so plain static hosting is enough). Connected to Cloudflare via **Workers Builds** (`wrangler.jsonc`, assets-only Worker serving `out/`), with `redesign-v2` set as the build branch. Build command `npm run build`, deploy command `npx wrangler deploy`. The two `NEXT_PUBLIC_SUPABASE_*` values must be set as build variables in the Cloudflare project settings — Next.js bakes them into the static output at build time.
