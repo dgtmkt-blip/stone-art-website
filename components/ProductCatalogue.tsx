@@ -13,18 +13,11 @@ function uniqueSorted(values: (string | undefined)[]): string[] {
 export function ProductCatalogue({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");
   const [colourFamily, setColourFamily] = useState("");
-  const [finish, setFinish] = useState("");
-  const [application, setApplication] = useState("");
   const [sort, setSort] = useState<SortKey>("name-asc");
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   // Filters only ever show options that actually exist in this category's dataset.
   const colourFamilies = useMemo(() => uniqueSorted(products.map((p) => p.colourFamily)), [products]);
-  const finishes = useMemo(() => uniqueSorted(products.map((p) => p.finish)), [products]);
-  const applications = useMemo(
-    () => uniqueSorted(products.flatMap((p) => p.applications)),
-    [products]
-  );
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -33,9 +26,7 @@ export function ProductCatalogue({ products }: { products: Product[] }) {
         !q ||
         [p.name, p.productCode, p.collection].some((f) => f.toLowerCase().includes(q));
       const matchesColour = !colourFamily || p.colourFamily === colourFamily;
-      const matchesFinish = !finish || p.finish === finish;
-      const matchesApplication = !application || p.applications.includes(application);
-      return matchesQuery && matchesColour && matchesFinish && matchesApplication;
+      return matchesQuery && matchesColour;
     });
 
     list = [...list].sort((a, b) => {
@@ -45,18 +36,16 @@ export function ProductCatalogue({ products }: { products: Product[] }) {
     });
 
     return list;
-  }, [products, query, colourFamily, finish, application, sort]);
+  }, [products, query, colourFamily, sort]);
 
-  const activeFilterCount = [colourFamily, finish, application].filter(Boolean).length;
+  const activeFilterCount = colourFamily ? 1 : 0;
 
   function resetFilters() {
     setColourFamily("");
-    setFinish("");
-    setApplication("");
   }
 
   const filterControls = (
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:max-w-xl">
       <div>
         <label htmlFor="filter-colour" className="mb-1.5 block text-[12px] font-semibold uppercase tracking-[0.12em] text-stone-500">
           Colour Family
@@ -70,38 +59,6 @@ export function ProductCatalogue({ products }: { products: Product[] }) {
           <option value="">All colours</option>
           {colourFamilies.map((c) => (
             <option key={c} value={c}>{c}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="filter-finish" className="mb-1.5 block text-[12px] font-semibold uppercase tracking-[0.12em] text-stone-500">
-          Finish
-        </label>
-        <select
-          id="filter-finish"
-          value={finish}
-          onChange={(e) => setFinish(e.target.value)}
-          className="w-full border border-stone-300 bg-transparent px-3 py-2.5 text-[14px] text-stone-900 focus:border-stone-900"
-        >
-          <option value="">All finishes</option>
-          {finishes.map((f) => (
-            <option key={f} value={f}>{f}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="filter-application" className="mb-1.5 block text-[12px] font-semibold uppercase tracking-[0.12em] text-stone-500">
-          Application
-        </label>
-        <select
-          id="filter-application"
-          value={application}
-          onChange={(e) => setApplication(e.target.value)}
-          className="w-full border border-stone-300 bg-transparent px-3 py-2.5 text-[14px] text-stone-900 focus:border-stone-900"
-        >
-          <option value="">All applications</option>
-          {applications.map((a) => (
-            <option key={a} value={a}>{a}</option>
           ))}
         </select>
       </div>
