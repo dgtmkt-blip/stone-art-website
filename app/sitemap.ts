@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { allProducts } from "@/lib/data/products";
 import { projects } from "@/lib/data/projects";
 
+export const dynamic = "force-static";
+
 const SITE_URL = "https://panelart.in";
 
 const staticRoutes = [
