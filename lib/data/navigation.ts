@@ -5,7 +5,6 @@ import type { NavItem } from "@/lib/types";
  * + mobile drawer) and Footer both read from this — edit here only.
  */
 export const mainNav: NavItem[] = [
-  { label: "Home", href: "/" },
   {
     label: "Products",
     href: "/products",

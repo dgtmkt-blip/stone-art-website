@@ -45,9 +45,9 @@ export function Header() {
         solid ? "bg-stone-50/97 py-3 shadow-[0_4px_24px_rgba(23,19,16,0.08)] backdrop-blur" : "bg-transparent py-6"
       }`}
     >
-      <div className="relative z-10 mx-auto flex max-w-[1440px] items-center justify-between px-6 md:px-10">
-        <Link href="/" className="shrink-0">
-          <Logo variant={solid ? "color" : "white"} className="h-8 md:h-9" priority />
+      <div className="relative z-10 mx-auto flex max-w-[1440px] items-center justify-between gap-8 px-6 md:px-10">
+        <Link href="/" className="shrink-0" aria-label="Stoneart — Home">
+          <Logo variant={solid ? "color" : "white"} className="h-9 md:h-11" priority />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
