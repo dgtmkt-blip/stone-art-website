@@ -12,9 +12,9 @@ export const siteSettings = {
 
   contact: {
     addressLines: [
-      "Unit 3, 5th Floor, The Regency,",
+      "The Regency, Unit 3, 2nd Floor,",
       "6 Hungerford Street,",
-      "Kolkata 700017, India",
+      "Kolkata-700017, India",
     ],
     phones: ["+91 33 4066 0166", "+91 33 2283 0166"],
     hours: "Monday – Saturday · 10:00 AM – 6:30 PM",
