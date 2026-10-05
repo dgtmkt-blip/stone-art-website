@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { StoneSwatch } from "@/components/StoneSwatch";
+import { ProductMedia } from "@/components/ProductMedia";
 import type { ProductImage } from "@/lib/types";
 
 const KIND_LABEL: Record<ProductImage["kind"], string> = {
-  texture: "Texture",
-  sheet: "Full Sheet",
+  texture: "Close-up",
+  sheet: "Sheet face",
   application: "Application",
   detail: "Detail",
 };
@@ -37,7 +37,13 @@ export function ProductGallery({ images }: { images: ProductImage[] }) {
         className="block w-full overflow-hidden rounded-[var(--radius-sm)] text-left"
         aria-label={`Open ${active.alt} in full screen`}
       >
-        <StoneSwatch tone={active.tone} alt={active.alt} className="aspect-[4/5] md:aspect-[16/11]" />
+        <ProductMedia
+          src={active.src}
+          tone={active.tone}
+          alt={active.alt}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="aspect-[4/5] bg-stone-200"
+        />
       </button>
 
       <div className="mt-4 grid grid-cols-4 gap-3">
@@ -52,7 +58,13 @@ export function ProductGallery({ images }: { images: ProductImage[] }) {
             aria-label={`Show ${img.alt}`}
             aria-pressed={i === activeIndex}
           >
-            <StoneSwatch tone={img.tone} alt="" className="aspect-square" />
+            <ProductMedia
+              src={img.thumbSrc ?? img.src}
+              tone={img.tone}
+              alt=""
+              sizes="120px"
+              className="aspect-square bg-stone-200"
+            />
           </button>
         ))}
       </div>
@@ -78,7 +90,14 @@ export function ProductGallery({ images }: { images: ProductImage[] }) {
             className="w-full max-w-3xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <StoneSwatch tone={active.tone} alt={active.alt} className="aspect-[4/3] rounded-[var(--radius-sm)]" />
+            <ProductMedia
+              src={active.src}
+              tone={active.tone}
+              alt={active.alt}
+              fit="contain"
+              sizes="(min-width: 768px) 768px, 100vw"
+              className={active.src ? "h-[75vh] w-full" : "aspect-[4/3] rounded-[var(--radius-sm)]"}
+            />
             <div className="mt-4 flex items-center justify-between text-stone-300">
               <button
                 type="button"

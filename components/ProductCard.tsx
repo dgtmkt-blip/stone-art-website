@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { StoneSwatch } from "@/components/StoneSwatch";
+import { ProductMedia } from "@/components/ProductMedia";
 import type { Product } from "@/lib/types";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -9,10 +9,12 @@ export function ProductCard({ product }: { product: Product }) {
       className="group block"
     >
       <div className="overflow-hidden rounded-[var(--radius-sm)]">
-        <StoneSwatch
+        <ProductMedia
+          src={product.thumbnailSrc}
           tone={product.thumbnailTone}
           alt={`${product.name} stone surface`}
-          className="aspect-[4/5] transition-transform duration-700 ease-[var(--ease-editorial)] group-hover:scale-[1.06]"
+          sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="aspect-[4/5] bg-stone-200 transition-transform duration-700 ease-[var(--ease-editorial)] group-hover:scale-[1.06]"
         />
       </div>
       <div className="mt-4 flex items-start justify-between gap-3">

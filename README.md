@@ -29,16 +29,24 @@ npm run lint     # ESLint
 
 All business content lives in `lib/data/`, separate from UI components:
 
-- `lib/data/products.ts` — the full product catalogue (**currently placeholder data** — see the file header comment)
+- `lib/data/catalogue.json` + `lib/data/products.ts` — the product catalogue (real data, **generated** — see "Updating the product catalogue" below; don't hand-edit the JSON)
 - `lib/data/projects.ts` — project gallery entries (**currently placeholder data**)
 - `lib/data/navigation.ts` — global nav + footer structure
 - `lib/data/site-settings.ts` — company info, contact details, material disclaimer
 
-To replace the placeholder catalogue with the real product list, edit `lib/data/products.ts` only — no component code should need to change, as long as the new data matches the `Product` shape in `lib/types.ts`.
+## Updating the product catalogue
+
+Products come from the `Product` folder (one level above this repo): the catalogue CSV plus the `Natural Stone` and `Poly Stone` photo folders. To refresh the site after changing them:
+
+```bash
+node scripts/import-catalogue.mjs
+```
+
+This rewrites `lib/data/catalogue.json` and copies/resizes the photos into `public/images/products/`, and prints a report (products without a photo, photos nobody uses, data it had to normalise). Photos are matched to products by name; anything the CSV can't express — a photo with a different name, a product's photo-to-product pairing for the numbered Poly Stone photos, which products feature on the homepage when none are marked "Yes" — goes in `scripts/catalogue-config.json`.
 
 ## Images
 
-No stock or competitor imagery is used anywhere. Every "photo" on the site is a CSS/SVG-generated stone-toned placeholder (`components/StoneSwatch.tsx`), driven by a `tone` + `alt` prop on each data entry. Swap in real photography by replacing `StoneSwatch` usages with `next/image` once approved assets exist — the data layer already carries `alt` text for every image slot.
+Product photography is real (see above). Everywhere else — homepage, projects, category tiles — images are still CSS-generated stone-toned placeholders (`components/StoneSwatch.tsx`) awaiting designer assets. A product without a photo falls back to the same placeholder, tinted by its colour family.
 
 ## Deployment
 

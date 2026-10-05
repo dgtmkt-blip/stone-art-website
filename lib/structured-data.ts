@@ -40,6 +40,7 @@ export function productJsonLd(product: Product) {
     name: product.name,
     sku: product.productCode,
     description: product.shortDescription,
+    ...(product.images[0]?.src ? { image: `${SITE_URL}${product.images[0].src}` } : {}),
     category: product.category === "natural-stone" ? "Natural Stone Veneer" : "Poly Stone Surface",
     brand: {
       "@type": "Brand",

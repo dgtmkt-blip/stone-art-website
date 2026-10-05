@@ -11,13 +11,18 @@ export const metadata: Metadata = {
   description: "Sheet sizes, general material information and downloadable technical documentation for Stoneart surfaces.",
 };
 
+function distinct(values: (string | undefined)[]): string {
+  const unique = Array.from(new Set(values.filter((v): v is string => Boolean(v))));
+  return unique.length ? unique.join(" · ") : "—";
+}
+
 const overviewRows = [
-  { label: "Natural Stone — Sheet Size", value: naturalStoneProducts[0]?.sheetSizes[0] ?? "—" },
-  { label: "Natural Stone — Thickness", value: naturalStoneProducts[0]?.thickness ?? "—" },
-  { label: "Natural Stone — Backing", value: naturalStoneProducts[0]?.backing ?? "—" },
-  { label: "Poly Stone — Sheet Size", value: polyStoneProducts[0]?.sheetSizes[0] ?? "—" },
-  { label: "Poly Stone — Thickness", value: polyStoneProducts[0]?.thickness ?? "—" },
-  { label: "Poly Stone — Backing", value: polyStoneProducts[0]?.backing ?? "—" },
+  { label: "Natural Stone — Sheet Size", value: distinct(naturalStoneProducts.flatMap((p) => p.sheetSizes)) },
+  { label: "Natural Stone — Thickness", value: distinct(naturalStoneProducts.map((p) => p.thickness)) },
+  { label: "Natural Stone — Backing", value: distinct(naturalStoneProducts.map((p) => p.backing)) },
+  { label: "Poly Stone — Sheet Size", value: distinct(polyStoneProducts.flatMap((p) => p.sheetSizes)) },
+  { label: "Poly Stone — Thickness", value: distinct(polyStoneProducts.map((p) => p.thickness)) },
+  { label: "Poly Stone — Backing", value: distinct(polyStoneProducts.map((p) => p.backing)) },
 ];
 
 const downloads = [
@@ -46,9 +51,8 @@ export default function TechnicalDataPage() {
           <Reveal>
             <h2 className="font-display text-[26px] text-stone-900">Overview</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-stone-600">
-              Figures below are indicative development placeholders pending the final approved
-              specification sheet from Panelart Decor. Individual products list their own values
-              on their respective product pages.
+              Figures below summarise the current Stoneart catalogue. Individual products list
+              their own values on their respective product pages.
             </p>
             <div className="mt-8">
               <SpecificationTable rows={overviewRows} />

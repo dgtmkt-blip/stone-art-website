@@ -1,0 +1,8 @@
+{
+  "featuredFallback": ["NS-020", "NS-044", "NS-051", "NS-032", "NS-049", "NS-015"],
+  "imageSources": {
+    "NS-035": { "primary": "stoneart-naturalston-28", "detail": "stoneart-naturalston-28-1" },
+    "NS-041": { "primary": "stoneart-naturalston-aqua-blanco" },
+    "NS-061": { "detail": "stoneart-naturalston-grigio-cliff-2" }
+  }
+}

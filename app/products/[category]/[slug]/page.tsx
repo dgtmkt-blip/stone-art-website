@@ -9,7 +9,6 @@ import { MaterialDisclaimer } from "@/components/MaterialDisclaimer";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SpecificationTable } from "@/components/SpecificationTable";
-import { StoneSwatch } from "@/components/StoneSwatch";
 import {
   CATEGORY_META,
   allProducts,
@@ -34,9 +33,11 @@ export async function generateMetadata(
   if (!isCategory(category)) return {};
   const product = getProductBySlug(category, slug);
   if (!product) return {};
+  const photo = product.images[0]?.src;
   return {
     title: `${product.name} (${product.productCode})`,
     description: product.shortDescription,
+    ...(photo ? { openGraph: { images: [photo] } } : {}),
   };
 }
 
@@ -61,9 +62,9 @@ export default async function ProductDetailPage(props: PageProps<"/products/[cat
       <JsonLd data={productJsonLd(product)} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
 
-      <section className="bg-stone-50 pb-4 pt-32 md:pt-40">
+      <section className="bg-stone-900 pb-6 pt-32 md:pt-36">
         <Container wide>
-          <Breadcrumbs items={breadcrumbItems} />
+          <Breadcrumbs items={breadcrumbItems} dark />
         </Container>
       </section>
 
@@ -150,20 +151,16 @@ export default async function ProductDetailPage(props: PageProps<"/products/[cat
       <section className="bg-stone-100 py-20">
         <Container wide>
           <h2 className="font-display text-[26px] text-stone-900">Applications</h2>
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          <ul className="mt-8 flex flex-wrap gap-3">
             {product.applications.map((application) => (
-              <div key={application} className="relative overflow-hidden rounded-[var(--radius-sm)]">
-                <StoneSwatch
-                  tone={product.thumbnailTone}
-                  alt={`${product.name} used for ${application}`}
-                  className="aspect-square"
-                />
-                <span className="absolute bottom-3 left-3 text-[13px] font-medium text-stone-50 drop-shadow">
-                  {application}
-                </span>
-              </div>
+              <li
+                key={application}
+                className="border border-stone-300 bg-stone-50 px-5 py-2.5 text-[14px] text-stone-800"
+              >
+                {application}
+              </li>
             ))}
-          </div>
+          </ul>
         </Container>
       </section>
 

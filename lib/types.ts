@@ -20,8 +20,13 @@ export type StoneTone =
 export interface ProductImage {
   /** Which role this image plays in the gallery. */
   kind: "texture" | "sheet" | "application" | "detail";
+  /** Placeholder tint used whenever `src` is absent. */
   tone: StoneTone;
   alt: string;
+  /** Full-size photograph under /public. */
+  src?: string;
+  /** Small version of the photograph for thumbnails. */
+  thumbSrc?: string;
 }
 
 export interface ProductDownload {
@@ -45,6 +50,8 @@ export interface Product {
   shortDescription: string;
   description: string;
   thumbnailTone: StoneTone;
+  /** Grid-card photograph (4:5). When absent the card shows a `thumbnailTone` placeholder. */
+  thumbnailSrc?: string;
   images: ProductImage[];
   colourFamily: string;
   finish: string;
@@ -57,7 +64,6 @@ export interface Product {
   technicalData: TechnicalDataRow[];
   downloads: ProductDownload[];
   featured?: boolean;
-  relatedProducts?: string[];
 }
 
 export type ProjectCategory =
