@@ -21,6 +21,7 @@ export default function AboutPage() {
         description="Stoneart is Panelart Decor's material philosophy in practice — real stone, engineered for the way architects actually build."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
         tone="slate"
+        image="/images/site/banners/about.webp"
       />
 
       <section className="py-24 md:py-32">

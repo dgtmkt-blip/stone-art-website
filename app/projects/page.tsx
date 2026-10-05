@@ -18,6 +18,7 @@ export default function ProjectsPage() {
         description="A selection of residential, hospitality, commercial, retail and furniture projects."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Projects" }]}
         tone="silver"
+        image="/images/site/banners/projects.webp"
       />
       <section className="py-20 md:py-28">
         <Container wide>

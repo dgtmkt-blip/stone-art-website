@@ -38,6 +38,7 @@ export default function PackingPage() {
         description="An overview of how Stoneart sheets are packed, protected and prepared for transport."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Packing" }]}
         tone="sand"
+        image="/images/site/banners/packing.webp"
       />
 
       <section className="py-20 md:py-28">

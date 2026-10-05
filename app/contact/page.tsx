@@ -19,6 +19,7 @@ export default function ContactPage() {
         description="Reach out for quotes, samples, technical data or general enquiries — our team responds directly."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
         tone="limestone"
+        image="/images/site/banners/contact.webp"
       />
 
       <section className="py-20 md:py-28">

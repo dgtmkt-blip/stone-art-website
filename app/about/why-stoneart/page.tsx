@@ -56,6 +56,7 @@ export default function WhyStoneartPage() {
           { label: "Why Stoneart" },
         ]}
         tone="clay"
+        image="/images/site/banners/about-why-stoneart.webp"
       />
 
       <section className="py-24 md:py-32">

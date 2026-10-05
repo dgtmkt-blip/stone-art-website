@@ -53,6 +53,7 @@ export default function ManufacturingPage() {
         description="An overview of how Stoneart sheets are made — from raw material to a finished architectural product."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Manufacturing" }]}
         tone="graphite"
+        image="/images/site/banners/manufacturing.webp"
       />
 
       <section className="py-6 md:py-10">

@@ -42,6 +42,7 @@ export default function BackingPage() {
         description="The flexible layer bonded to every Stoneart sheet — what gives genuine stone its bend, and its ability to adhere to almost any surface."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Backing" }]}
         tone="charcoal"
+        image="/images/site/banners/backing.webp"
       />
 
       <section className="py-20 md:py-28">

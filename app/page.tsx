@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
 import { ProductGrid } from "@/components/ProductGrid";
+import { ProductMedia } from "@/components/ProductMedia";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -38,12 +40,17 @@ const whyStoneartFeatures = [
   },
 ];
 
-const applicationStories: { title: string; tone: "slate" | "clay" | "charcoal" | "sand" | "silver" }[] = [
-  { title: "Feature Walls", tone: "slate" },
-  { title: "Hospitality Interiors", tone: "clay" },
-  { title: "Curved Surfaces", tone: "silver" },
-  { title: "Living Room", tone: "sand" },
-  { title: "Commercial Spaces", tone: "charcoal" },
+const applicationStories: {
+  title: string;
+  tone: "slate" | "clay" | "charcoal" | "sand" | "silver";
+  image: string;
+  alt: string;
+}[] = [
+  { title: "Feature Walls", tone: "slate", image: "/images/site/home/mosaic-feature-walls.webp", alt: "Bedroom with a warm stone-clad feature wall" },
+  { title: "Hospitality Interiors", tone: "clay", image: "/images/site/home/mosaic-hospitality.webp", alt: "Restaurant dining area with a stone feature wall" },
+  { title: "Curved Surfaces", tone: "silver", image: "/images/site/home/mosaic-curved-surfaces.webp", alt: "Curved building facade clad in dark stone veneer" },
+  { title: "Living Room", tone: "sand", image: "/images/site/home/mosaic-living-room.webp", alt: "Living room with a veined travertine-look stone wall" },
+  { title: "Commercial Spaces", tone: "charcoal", image: "/images/site/home/mosaic-commercial.webp", alt: "Office reception desk in front of a grey stone wall" },
 ];
 
 export default function HomePage() {
@@ -54,8 +61,17 @@ export default function HomePage() {
     <>
       {/* 01 — HERO */}
       <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-stone-900 text-stone-50">
-        <StoneSwatch tone="slate" alt="Architectural natural stone veneer surface" className="absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/55 to-stone-950/25" />
+        <Image
+          src="/images/site/home/hero.webp"
+          alt="Living room with a warm stone veneer feature wall"
+          fill
+          sizes="100vw"
+          loading="eager"
+          fetchPriority="high"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-950/80 via-stone-950/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/75 via-transparent to-stone-950/35" />
         <Container wide className="relative pb-24 pt-48 md:pb-32">
           <Reveal>
             <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.28em] text-ember-light">
@@ -88,7 +104,13 @@ export default function HomePage() {
       <section className="py-24 md:py-32">
         <Container wide className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <StoneSwatch tone="limestone" alt="Macro texture of natural stone surface" className="aspect-[4/5] rounded-[var(--radius-sm)]" />
+            <ProductMedia
+              src="/images/site/home/nature-surface.webp"
+              tone="limestone"
+              alt="Natural stone wall with warm veining beside a softly lit staircase"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="aspect-[4/5] rounded-[var(--radius-sm)]"
+            />
           </Reveal>
           <Reveal delay={2}>
             <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.24em] text-ember">
@@ -119,12 +141,16 @@ export default function HomePage() {
             <ProductWorldCard
               href="/products/natural-stone"
               tone="clay"
+              image="/images/site/home/natural-stone-world.webp"
+              imageAlt="Bathroom with a natural stone veneer wall"
               title="Natural Stone"
               description="Genuine slate and quartz veneer — authentic texture, colour and grain, cut thin and flexible."
             />
             <ProductWorldCard
               href="/products/poly-stone"
               tone="graphite"
+              image="/images/site/home/poly-stone-world.webp"
+              imageAlt="Executive office with a large-format poly stone wall"
               title="Poly Stone"
               description="Engineered mineral-composite surfaces built for scale, consistency and large-format specification."
             />
@@ -174,7 +200,14 @@ export default function HomePage() {
                   i === 0 ? "col-span-2 row-span-2" : "col-span-1"
                 }`}
               >
-                <StoneSwatch tone={story.tone} alt={`${story.title} application of Stoneart surfaces`} className="aspect-square h-full" />
+                <ProductMedia
+                  src={story.image}
+                  tone={story.tone}
+                  alt={story.alt}
+                  sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
+                  className="aspect-square h-full"
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-stone-950/65 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-[14px] font-medium uppercase tracking-[0.05em] text-stone-50 drop-shadow">
                   {story.title}
                 </span>
@@ -272,11 +305,15 @@ export default function HomePage() {
 function ProductWorldCard({
   href,
   tone,
+  image,
+  imageAlt,
   title,
   description,
 }: {
   href: string;
   tone: "clay" | "graphite";
+  image: string;
+  imageAlt: string;
   title: string;
   description: string;
 }) {
@@ -284,9 +321,11 @@ function ProductWorldCard({
     <Reveal>
       <Link href={href} className="group block">
         <div className="relative overflow-hidden rounded-[var(--radius-sm)]">
-          <StoneSwatch
+          <ProductMedia
+            src={image}
             tone={tone}
-            alt={`${title} collection`}
+            alt={imageAlt}
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="aspect-[4/5] transition-transform duration-700 ease-[var(--ease-editorial)] group-hover:scale-[1.05] md:aspect-[16/11]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/10 to-transparent" />

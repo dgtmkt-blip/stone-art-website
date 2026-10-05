@@ -44,6 +44,7 @@ export default function TechnicalDataPage() {
           { label: "Technical Data" },
         ]}
         tone="graphite"
+        image="/images/site/banners/about-technical-data.webp"
       />
 
       <section className="py-20 md:py-28">

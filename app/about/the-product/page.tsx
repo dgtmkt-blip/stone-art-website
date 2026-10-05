@@ -31,6 +31,7 @@ export default function TheProductPage() {
           { label: "The Product" },
         ]}
         tone="slate"
+        image="/images/site/banners/about-the-product.webp"
       />
 
       <section className="py-24 md:py-32">

@@ -29,6 +29,7 @@ export default function InstallationPage() {
         description="Guidance for architects, contractors and installers working with Stoneart surfaces."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Installation" }]}
         tone="graphite"
+        image="/images/site/banners/installation.webp"
       />
 
       <section className="py-6">

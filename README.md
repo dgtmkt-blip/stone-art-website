@@ -46,7 +46,7 @@ This rewrites `lib/data/catalogue.json` and copies/resizes the photos into `publ
 
 ## Images
 
-Product photography is real (see above). Everywhere else — homepage, projects, category tiles — images are still CSS-generated stone-toned placeholders (`components/StoneSwatch.tsx`) awaiting designer assets. A product without a photo falls back to the same placeholder, tinted by its colour family.
+Product photography is real (see above). The homepage images and the ten wide page banners come from the `Website Images` folder; refresh them with `node scripts/import-site-images.mjs` (the file list at the top of that script says which image goes where). Anything without a photo yet — the Products pages' banner, project imagery, category tiles — is still a CSS-generated stone-toned placeholder (`components/StoneSwatch.tsx`). A product without a photo falls back to the same placeholder, tinted by its colour family.
 
 ## Deployment
 
