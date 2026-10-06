@@ -2714,7 +2714,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a white tone.",
     "description": "White Vein Travertine is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a white tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/white-vein-travertine.webp",
+      "thumb": "/images/products/poly-stone/white-vein-travertine-thumb.webp",
+      "detail": "/images/products/poly-stone/white-vein-travertine-detail.webp",
+      "detailThumb": "/images/products/poly-stone/white-vein-travertine-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-002",
@@ -2747,7 +2752,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a beige tone.",
     "description": "Tuscan Cream Travertine is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a beige tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/tuscan-cream-travertine.webp",
+      "thumb": "/images/products/poly-stone/tuscan-cream-travertine-thumb.webp",
+      "detail": "/images/products/poly-stone/tuscan-cream-travertine-detail.webp",
+      "detailThumb": "/images/products/poly-stone/tuscan-cream-travertine-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-003",
@@ -2780,7 +2790,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a brown tone.",
     "description": "Terra Rossa Travertine is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a brown tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/terra-rossa-travertine.webp",
+      "thumb": "/images/products/poly-stone/terra-rossa-travertine-thumb.webp",
+      "detail": "/images/products/poly-stone/terra-rossa-travertine-detail.webp",
+      "detailThumb": "/images/products/poly-stone/terra-rossa-travertine-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-004",
@@ -2813,7 +2828,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a grey tone.",
     "description": "Silver Drift Travertine is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a grey tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/silver-drift-travertine.webp",
+      "thumb": "/images/products/poly-stone/silver-drift-travertine-thumb.webp",
+      "detail": "/images/products/poly-stone/silver-drift-travertine-detail.webp",
+      "detailThumb": "/images/products/poly-stone/silver-drift-travertine-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-005",
@@ -2846,7 +2866,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a brown tone.",
     "description": "M07 is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a brown tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/m07.webp",
+      "thumb": "/images/products/poly-stone/m07-thumb.webp",
+      "detail": "/images/products/poly-stone/m07-detail.webp",
+      "detailThumb": "/images/products/poly-stone/m07-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-006",
@@ -2879,7 +2904,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a brown tone.",
     "description": "Fossil Ridge Travertine(A) is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a brown tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/fossil-ridge-travertine-a.webp",
+      "thumb": "/images/products/poly-stone/fossil-ridge-travertine-a-thumb.webp",
+      "detail": "/images/products/poly-stone/fossil-ridge-travertine-a-detail.webp",
+      "detailThumb": "/images/products/poly-stone/fossil-ridge-travertine-a-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-007",
@@ -2912,7 +2942,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a brown tone.",
     "description": "Fossil Ridge Travertine(B) is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a brown tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/fossil-ridge-travertine-b.webp",
+      "thumb": "/images/products/poly-stone/fossil-ridge-travertine-b-thumb.webp",
+      "detail": "/images/products/poly-stone/fossil-ridge-travertine-b-detail.webp",
+      "detailThumb": "/images/products/poly-stone/fossil-ridge-travertine-b-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-008",
@@ -2945,7 +2980,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a yellow tone.",
     "description": "Desert Veil Travertine is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a yellow tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/desert-veil-travertine.webp",
+      "thumb": "/images/products/poly-stone/desert-veil-travertine-thumb.webp",
+      "detail": "/images/products/poly-stone/desert-veil-travertine-detail.webp",
+      "detailThumb": "/images/products/poly-stone/desert-veil-travertine-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-009",
@@ -2978,7 +3018,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a yellow tone.",
     "description": "Coral vein Travertine is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a yellow tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/coral-vein-travertine.webp",
+      "thumb": "/images/products/poly-stone/coral-vein-travertine-thumb.webp",
+      "detail": "/images/products/poly-stone/coral-vein-travertine-detail.webp",
+      "detailThumb": "/images/products/poly-stone/coral-vein-travertine-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-010",
@@ -3011,7 +3056,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a grey tone.",
     "description": "Capri Vein Travertine is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a grey tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/capri-vein-travertine.webp",
+      "thumb": "/images/products/poly-stone/capri-vein-travertine-thumb.webp",
+      "detail": "/images/products/poly-stone/capri-vein-travertine-detail.webp",
+      "detailThumb": "/images/products/poly-stone/capri-vein-travertine-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-011",
@@ -3044,7 +3094,12 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a yellow tone.",
     "description": "Beige Strata is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a yellow tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/beige-strata.webp",
+      "thumb": "/images/products/poly-stone/beige-strata-thumb.webp",
+      "detail": "/images/products/poly-stone/beige-strata-detail.webp",
+      "detailThumb": "/images/products/poly-stone/beige-strata-detail-thumb.webp"
+    }
   },
   {
     "id": "ps-012",
@@ -3077,6 +3132,11 @@
     "featured": false,
     "shortDescription": "Poly Stone surface with a natural stone texture, in a grey tone.",
     "description": "Ashen Flow Travertine is part of the Stoneart Poly Stone range: a surface with a natural stone texture in a grey tone. It is supplied in 1220 × 2440 mm (4 × 8 ft) Customizable sheets, 3–4 mm thick, with polyester backing.",
-    "images": null
+    "images": {
+      "primary": "/images/products/poly-stone/ashen-flow-travertine.webp",
+      "thumb": "/images/products/poly-stone/ashen-flow-travertine-thumb.webp",
+      "detail": "/images/products/poly-stone/ashen-flow-travertine-detail.webp",
+      "detailThumb": "/images/products/poly-stone/ashen-flow-travertine-detail-thumb.webp"
+    }
   }
 ]

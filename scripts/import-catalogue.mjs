@@ -114,16 +114,40 @@ function describe(p) {
   return { short, long };
 }
 
+const folderIndex = {};
+/** Photo files in a category folder, keyed by their name with the prefix stripped and punctuation/case ignored. */
+function indexFor(cat) {
+  if (!folderIndex[cat.folder]) {
+    const dir = path.join(SRC_DIR, cat.folder);
+    const map = new Map();
+    if (fs.existsSync(dir)) {
+      for (const f of fs.readdirSync(dir)) {
+        if (!f.toLowerCase().endsWith(".webp")) continue;
+        const stem = f.slice(0, -5);
+        const rest = stem.toLowerCase().startsWith(cat.filePrefix) ? stem.slice(cat.filePrefix.length) : stem;
+        map.set(fileKey(rest), f);
+      }
+    }
+    folderIndex[cat.folder] = map;
+  }
+  return folderIndex[cat.folder];
+}
+
 async function processImages(row, cat, slug, code) {
   const dir = path.join(SRC_DIR, cat.folder);
   const override = config.imageSources?.[code] ?? {};
+  const index = indexFor(cat);
   const texKey = fileKey(clean(row["Texture Image Filename"]) || clean(row["Product Name"]));
-  const primaryBase = override.primary ?? `${cat.filePrefix}${texKey}`;
-  const detailBase = override.detail ?? `${primaryBase}-1`;
-  const primaryFile = path.join(dir, `${primaryBase}.webp`);
-  const detailFile = path.join(dir, `${detailBase}.webp`);
+  const primaryName = override.primary ? `${override.primary}.webp` : index.get(texKey);
+  const detailName = override.detail
+    ? `${override.detail}.webp`
+    : override.primary
+      ? `${override.primary}-1.webp`
+      : index.get(`${texKey}-1`);
+  const primaryFile = primaryName && path.join(dir, primaryName);
+  const detailFile = detailName && path.join(dir, detailName);
 
-  if (!fs.existsSync(primaryFile)) {
+  if (!primaryFile || !fs.existsSync(primaryFile)) {
     report.missingImages.push(`${code} ${row["Product Name"]}`);
     return null;
   }
@@ -136,16 +160,16 @@ async function processImages(row, cat, slug, code) {
     .resize(560, 700, { fit: "cover", position: "centre" })
     .webp({ quality: 78 })
     .toFile(path.join(outDir, `${slug}-thumb.webp`));
-  report.usedFiles.add(`${cat.folder}/${primaryBase}.webp`);
+  report.usedFiles.add(`${cat.folder}/${primaryName}`);
 
   const images = { primary: web(slug), thumb: web(`${slug}-thumb`) };
-  if (fs.existsSync(detailFile)) {
+  if (detailFile && fs.existsSync(detailFile)) {
     fs.copyFileSync(detailFile, path.join(outDir, `${slug}-detail.webp`));
     await sharp(detailFile)
       .resize(280, 350, { fit: "cover", position: "centre" })
       .webp({ quality: 78 })
       .toFile(path.join(outDir, `${slug}-detail-thumb.webp`));
-    report.usedFiles.add(`${cat.folder}/${detailBase}.webp`);
+    report.usedFiles.add(`${cat.folder}/${detailName}`);
     images.detail = web(`${slug}-detail`);
     images.detailThumb = web(`${slug}-detail-thumb`);
   }
