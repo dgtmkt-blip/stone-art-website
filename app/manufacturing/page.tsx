@@ -7,8 +7,10 @@ import { StoneSwatch } from "@/components/StoneSwatch";
 import type { StoneTone } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Manufacturing",
-  description: "How Stoneart surfaces move from raw stone to a finished architectural sheet.",
+  title: "How Stone Veneer Sheets Are Made",
+  description:
+    "How Stoneart turns real stone into thin, flexible veneer sheets, from raw stone through backing and finishing.",
+  alternates: { canonical: "/manufacturing" },
 };
 
 const stages: { title: string; description: string; tone: StoneTone }[] = [

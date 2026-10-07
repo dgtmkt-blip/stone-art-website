@@ -6,8 +6,10 @@ import { Reveal } from "@/components/Reveal";
 import { StoneSwatch } from "@/components/StoneSwatch";
 
 export const metadata: Metadata = {
-  title: "Why Stoneart",
-  description: "The architectural case for choosing Stoneart natural stone and poly stone surfaces.",
+  title: "Why Choose Stoneart Stone Veneer",
+  description:
+    "Why architects and designers choose Stoneart: real stone character, light and flexible sheets, easy installation and a wide colour range.",
+  alternates: { canonical: "/about/why-stoneart" },
 };
 
 const benefits = [

@@ -8,8 +8,10 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { StoneSwatch } from "@/components/StoneSwatch";
 
 export const metadata: Metadata = {
-  title: "The Product",
-  description: "What Stoneart veneer is and how it's constructed — material composition, character and flexibility.",
+  title: "The Product: Thin, Flexible Stone Veneer",
+  description:
+    "What Stoneart stone veneer is: a thin layer of real stone on a flexible backing, light enough for walls, furniture and curved surfaces.",
+  alternates: { canonical: "/about/the-product" },
 };
 
 const anatomyLayers = [

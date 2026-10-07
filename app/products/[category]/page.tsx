@@ -19,7 +19,11 @@ export async function generateMetadata(props: PageProps<"/products/[category]">)
   const { category } = await props.params;
   if (!isCategory(category)) return {};
   const meta = CATEGORY_META[category];
-  return { title: meta.label, description: meta.description };
+  return {
+    title: meta.seoTitle,
+    description: meta.description,
+    alternates: { canonical: `/products/${category}` },
+  };
 }
 
 export default async function ProductCategoryPage(props: PageProps<"/products/[category]">) {

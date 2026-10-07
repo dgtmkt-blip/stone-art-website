@@ -5,8 +5,11 @@ import { ProjectFilterGrid } from "@/components/ProjectFilterGrid";
 import { projects } from "@/lib/data/projects";
 
 export const metadata: Metadata = {
-  title: "Projects",
-  description: "A gallery of architectural projects specifying Stoneart natural stone and poly stone surfaces.",
+  title: "Projects Using Stoneart Stone Veneer",
+  description:
+    "A gallery of architectural projects specifying Stoneart natural stone and Poly Stone surfaces.",
+  // Placeholder projects: keep out of search results until real project content replaces them.
+  robots: { index: false },
 };
 
 export default function ProjectsPage() {

@@ -1,0 +1,32 @@
+# 301 redirects from the previous panelart.in (WordPress) pages to their new equivalents.
+# Each page is listed with and without a trailing slash and with /index.html, as the old site linked it.
+/about/about-the-product /about/the-product 301
+/about/about-the-product/ /about/the-product 301
+/about/about-the-product/index.html /about/the-product 301
+/about/why-stone-art /about/why-stoneart 301
+/about/why-stone-art/ /about/why-stoneart 301
+/about/why-stone-art/index.html /about/why-stoneart 301
+/about/technical-data/sizes-of-the-sheets /about/technical-data 301
+/about/technical-data/sizes-of-the-sheets/ /about/technical-data 301
+/about/technical-data/sizes-of-the-sheets/index.html /about/technical-data 301
+/about/technical-data/technical-data-sheet /about/technical-data 301
+/about/technical-data/technical-data-sheet/ /about/technical-data 301
+/about/technical-data/technical-data-sheet/index.html /about/technical-data 301
+/installation-procedure /installation 301
+/installation-procedure/ /installation 301
+/installation-procedure/index.html /installation 301
+/products/slate-and-quartz /products/natural-stone 301
+/products/slate-and-quartz/ /products/natural-stone 301
+/products/slate-and-quartz/index.html /products/natural-stone 301
+/products/other-stone /products/natural-stone 301
+/products/other-stone/ /products/natural-stone 301
+/products/other-stone/index.html /products/natural-stone 301
+/about/index.html /about 301
+/about/technical-data/index.html /about/technical-data 301
+/manufacturing/index.html /manufacturing 301
+/backing/index.html /backing 301
+/packing/index.html /packing 301
+/projects/index.html /projects 301
+/contact/index.html /contact 301
+/products/index.html /products 301
+/index.html / 301

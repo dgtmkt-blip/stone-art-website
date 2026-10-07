@@ -6,8 +6,10 @@ import { Reveal } from "@/components/Reveal";
 import { siteSettings } from "@/lib/data/site-settings";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with Stoneart by Panelart Decor — quotes, samples, technical guidance and general enquiries.",
+  title: "Contact Us: Stone Veneer Enquiries, Kolkata",
+  description:
+    "Request samples, quotes or technical help for Stoneart stone veneer. Call or write to Panelart Decor, Kolkata.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

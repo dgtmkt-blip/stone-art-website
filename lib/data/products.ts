@@ -34,18 +34,20 @@ interface CatalogueRecord {
 
 export const CATEGORY_META: Record<
   ProductCategorySlug,
-  { label: string; description: string; tone: "slate" | "graphite" }
+  { label: string; seoTitle: string; description: string; tone: "slate" | "graphite" }
 > = {
   "natural-stone": {
     label: "Natural Stone",
+    seoTitle: "Flexible Natural Stone Veneer Sheets",
     description:
-      "Flexible natural stone veneer in slate, quartzite, sandstone, marble and limestone: real stone only 1.5–2 mm thick, in 610 × 1220 mm and 1220 × 2440 mm sheets for walls, furniture and curved surfaces.",
+      "Flexible natural stone veneer in slate, quartzite, sandstone and marble: real stone 1.5–2 mm thin, in 610 × 1220 and 1220 × 2440 mm sheets.",
     tone: "slate",
   },
   "poly-stone": {
     label: "Poly Stone",
+    seoTitle: "Flexible Poly Stone Wall Cladding Sheets",
     description:
-      "Flexible Poly Stone sheets with natural stone textures, 3–4 mm thick in large 1220 × 2440 mm formats, for wall cladding, decorative panels and furniture surfaces.",
+      "Flexible Poly Stone sheets with natural stone textures, 3–4 mm thick, in large 1220 × 2440 mm formats for wall cladding and furniture.",
     tone: "graphite",
   },
 };

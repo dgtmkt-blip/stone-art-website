@@ -1,4 +1,4 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
@@ -7,11 +7,17 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { ProductMedia } from "@/components/ProductMedia";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
+import { ResponsiveBanner } from "@/components/ResponsiveBanner";
 import { SectionHeading } from "@/components/SectionHeading";
 import { StoneSwatch } from "@/components/StoneSwatch";
 import { getFeaturedProducts } from "@/lib/data/products";
 import { projects } from "@/lib/data/projects";
 import { siteSettings } from "@/lib/data/site-settings";
+
+export const metadata: Metadata = {
+  title: { absolute: "Flexible Stone Veneer Sheets | Stoneart by Panelart Decor" },
+  alternates: { canonical: "/" },
+};
 
 const whyStoneartFeatures = [
   {
@@ -61,14 +67,9 @@ export default function HomePage() {
     <>
       {/* 01 — HERO */}
       <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-stone-900 text-stone-50">
-        <Image
+        <ResponsiveBanner
           src="/images/site/home/hero.webp"
           alt="Living room with a warm stone veneer feature wall"
-          fill
-          sizes="100vw"
-          loading="eager"
-          fetchPriority="high"
-          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-stone-950/80 via-stone-950/35 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950/75 via-transparent to-stone-950/35" />

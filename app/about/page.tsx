@@ -8,8 +8,10 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { StoneSwatch } from "@/components/StoneSwatch";
 
 export const metadata: Metadata = {
-  title: "About Stoneart",
-  description: "The story, material philosophy and architectural focus behind Stoneart by Panelart Decor.",
+  title: "About Stoneart by Panelart Decor",
+  description:
+    "The story and material approach behind Stoneart flexible stone veneer, by Panelart Decor, Kolkata.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

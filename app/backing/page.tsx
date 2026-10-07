@@ -7,8 +7,10 @@ import { StoneSwatch } from "@/components/StoneSwatch";
 import type { StoneTone } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Backing",
-  description: "The backing types behind every Stoneart sheet — Poly Backing, Translucent and Fleece Backing — and what each is suited for.",
+  title: "Stone Veneer Backing: Polyester & Translucent",
+  description:
+    "Poly, translucent and fleece backing explained: how each Stoneart veneer backing works and where to use it.",
+  alternates: { canonical: "/backing" },
 };
 
 // Verified from the live panelart.in "Backing" page.

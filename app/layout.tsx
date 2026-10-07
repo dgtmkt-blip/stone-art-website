@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { organizationJsonLd } from "@/lib/structured-data";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
 /**
@@ -37,19 +37,27 @@ export const metadata: Metadata = {
     template: "%s | Stoneart",
   },
   description:
-    "Stoneart by Panelart Decor — natural stone veneer and engineered poly stone surfaces for architects, designers and builders. Thin, flexible, architectural.",
+    "Real natural stone veneer and Poly Stone sheets, thin and flexible, for walls, furniture and curved surfaces. Stoneart by Panelart Decor, Kolkata.",
   openGraph: {
-    title: "Stoneart — Natural Stone, Reimagined",
-    description:
-      "Natural stone veneer and engineered poly stone surfaces for architecture and interiors.",
+    title: "Stoneart — Flexible Stone Veneer by Panelart Decor",
+    description: "Real natural stone veneer and Poly Stone sheets for walls, furniture and curved surfaces.",
     siteName: "Stoneart",
     type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/images/site/home/hero.webp",
+        width: 2400,
+        height: 1600,
+        alt: "Living room with a warm stone veneer feature wall",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stoneart — Natural Stone, Reimagined",
-    description:
-      "Natural stone veneer and engineered poly stone surfaces for architecture and interiors.",
+    title: "Stoneart — Flexible Stone Veneer by Panelart Decor",
+    description: "Real natural stone veneer and Poly Stone sheets for walls, furniture and curved surfaces.",
+    images: ["/images/site/home/hero.webp"],
   },
 };
 
@@ -58,6 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" data-scroll-behavior="smooth" className={`${fraunces.variable} ${inter.variable}`}>
       <body className="flex min-h-dvh flex-col bg-stone-50 font-sans text-stone-900 antialiased">
         <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={websiteJsonLd()} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

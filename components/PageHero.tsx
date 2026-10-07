@@ -1,7 +1,9 @@
-import Image from "next/image";
 import { Breadcrumbs, type Crumb } from "@/components/Breadcrumbs";
 import { Container } from "@/components/Container";
+import { JsonLd } from "@/components/JsonLd";
+import { ResponsiveBanner } from "@/components/ResponsiveBanner";
 import { StoneSwatch } from "@/components/StoneSwatch";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 import type { StoneTone } from "@/lib/types";
 
 interface PageHeroProps {
@@ -17,9 +19,10 @@ interface PageHeroProps {
 export function PageHero({ eyebrow, title, description, breadcrumbs, tone = "charcoal", image }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden bg-stone-900 pb-16 pt-40 text-stone-50 md:pb-20 md:pt-48">
+      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       {image ? (
         <>
-          <Image src={image} alt="" fill sizes="100vw" loading="eager" fetchPriority="high" className="object-cover" />
+          <ResponsiveBanner src={image} />
           <div className="absolute inset-0 bg-gradient-to-r from-stone-950/90 via-stone-950/60 to-stone-950/15" />
           <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-transparent to-stone-950/40" />
         </>

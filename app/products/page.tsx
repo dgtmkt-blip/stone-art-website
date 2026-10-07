@@ -4,11 +4,12 @@ import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { StoneSwatch } from "@/components/StoneSwatch";
-import { CATEGORY_META } from "@/lib/data/products";
+import { CATEGORY_META, allProducts } from "@/lib/data/products";
 
 export const metadata: Metadata = {
-  title: "Products",
-  description: "Natural Stone and Poly Stone surfaces from Stoneart by Panelart Decor.",
+  title: "Natural Stone & Poly Stone Veneer Sheets",
+  description: `Browse ${allProducts.length} flexible stone veneer sheets from Stoneart: real natural stone 1.5–2 mm thin, plus large-format Poly Stone. Panelart Decor, Kolkata.`,
+  alternates: { canonical: "/products" },
 };
 
 export default function ProductsPage() {

@@ -7,8 +7,10 @@ import { SpecificationTable } from "@/components/SpecificationTable";
 import { CATEGORY_META, naturalStoneProducts, polyStoneProducts } from "@/lib/data/products";
 
 export const metadata: Metadata = {
-  title: "Technical Data",
-  description: "Sheet sizes, general material information and downloadable technical documentation for Stoneart surfaces.",
+  title: "Stone Veneer Technical Data & Sheet Sizes",
+  description:
+    "Stoneart stone veneer sheet sizes, thickness, backing and technical information for architects, specifiers and contractors.",
+  alternates: { canonical: "/about/technical-data" },
 };
 
 function distinct(values: (string | undefined)[]): string {

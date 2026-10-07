@@ -6,8 +6,10 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Installation",
-  description: "A general installation overview for Stoneart natural stone and poly stone surfaces.",
+  title: "How to Install Flexible Stone Veneer",
+  description:
+    "A general guide to installing Stoneart flexible stone veneer on walls, furniture and curved surfaces.",
+  alternates: { canonical: "/installation" },
 };
 
 const steps = [

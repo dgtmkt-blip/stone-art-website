@@ -55,6 +55,11 @@ for (const [dir, file, out] of FILES) {
   const dest = path.join(OUT, `${out}.webp`);
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   await sharp(src).webp({ quality: 80 }).toFile(dest);
+  if (out === "home/hero" || out.startsWith("banners/")) {
+    for (const width of [800, 1600]) {
+      await sharp(src).resize({ width }).webp({ quality: 78 }).toFile(path.join(OUT, `${out}-${width}.webp`));
+    }
+  }
   before += fs.statSync(src).size;
   after += fs.statSync(dest).size;
   console.log(`${out.padEnd(34)} ${(fs.statSync(dest).size / 1024).toFixed(0)} KB`);

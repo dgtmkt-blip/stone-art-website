@@ -6,6 +6,7 @@ import { CTASection } from "@/components/CTASection";
 import { ProjectCard } from "@/components/ProjectCard";
 import { StoneSwatch } from "@/components/StoneSwatch";
 import { getProjectBySlug, getRelatedProjects, projects } from "@/lib/data/projects";
+import { trimMeta } from "@/lib/seo";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -15,7 +16,12 @@ export async function generateMetadata(props: PageProps<"/projects/[slug]">): Pr
   const { slug } = await props.params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
-  return { title: project.title, description: project.description };
+  return {
+    title: project.title,
+    description: trimMeta(project.description),
+    // Placeholder projects: keep out of search results until real project content replaces them.
+    robots: { index: false },
+  };
 }
 
 export default async function ProjectDetailPage(props: PageProps<"/projects/[slug]">) {

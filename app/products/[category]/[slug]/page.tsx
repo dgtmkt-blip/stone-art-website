@@ -15,6 +15,7 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from "@/lib/data/products";
+import { productPageTitle } from "@/lib/seo";
 import { breadcrumbJsonLd, productJsonLd } from "@/lib/structured-data";
 import type { ProductCategorySlug } from "@/lib/types";
 
@@ -34,10 +35,19 @@ export async function generateMetadata(
   const product = getProductBySlug(category, slug);
   if (!product) return {};
   const photo = product.images[0]?.src;
+  const title = productPageTitle(product.name, product.typeLabel, product.productCode);
   return {
-    title: `${product.name} ${product.typeLabel} (${product.productCode})`,
+    title,
     description: product.shortDescription,
-    ...(photo ? { openGraph: { images: [photo] } } : {}),
+    alternates: { canonical: `/products/${category}/${slug}` },
+    openGraph: {
+      title,
+      description: product.shortDescription,
+      siteName: "Stoneart",
+      type: "website",
+      ...(photo ? { images: [{ url: photo, alt: product.images[0].alt }] } : {}),
+    },
+    twitter: { card: "summary_large_image", title, description: product.shortDescription },
   };
 }
 

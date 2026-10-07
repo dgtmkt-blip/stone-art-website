@@ -1,0 +1,17 @@
+# Cloudflare static-asset headers
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Photos: cache for a week so repeat visits and page-to-page browsing are fast.
+/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# Build output with hashed file names never changes, so it can be cached for a year.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Keep the temporary test address out of Google; panelart.in is the indexable site.
+https://stone-art-website.dgtmkt.workers.dev/*
+  X-Robots-Tag: noindex, nofollow

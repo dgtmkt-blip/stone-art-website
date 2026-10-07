@@ -6,8 +6,10 @@ import { Reveal } from "@/components/Reveal";
 import { StoneSwatch } from "@/components/StoneSwatch";
 
 export const metadata: Metadata = {
-  title: "Packing",
-  description: "How Stoneart surfaces are packed and protected for transport and handling.",
+  title: "Stone Veneer Packing & Transport",
+  description:
+    "How Stoneart stone veneer sheets are packed, protected and prepared for safe transport to site.",
+  alternates: { canonical: "/packing" },
 };
 
 const principles = [
