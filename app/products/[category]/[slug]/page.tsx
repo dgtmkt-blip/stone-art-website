@@ -35,7 +35,7 @@ export async function generateMetadata(
   if (!product) return {};
   const photo = product.images[0]?.src;
   return {
-    title: `${product.name} (${product.productCode})`,
+    title: `${product.name} ${product.typeLabel} (${product.productCode})`,
     description: product.shortDescription,
     ...(photo ? { openGraph: { images: [photo] } } : {}),
   };
@@ -82,7 +82,11 @@ export default async function ProductDetailPage(props: PageProps<"/products/[cat
             <p className="mt-1 text-[14px] uppercase tracking-[0.08em] text-stone-500">
               {product.productCode}
             </p>
-            <p className="mt-6 text-[16px] leading-relaxed text-stone-600">{product.description}</p>
+            <div className="mt-6 space-y-4 text-[16px] leading-relaxed text-stone-600">
+              {product.description.split("\n\n").map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
 
             <div className="mt-9 flex flex-wrap gap-4">
               <Button href="#enquire">Enquire About This Product</Button>

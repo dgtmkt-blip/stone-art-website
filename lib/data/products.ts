@@ -28,6 +28,7 @@ interface CatalogueRecord {
   featured: boolean;
   shortDescription: string;
   description: string;
+  typeLabel: string;
   images: { primary: string; thumb: string; detail?: string; detailThumb?: string } | null;
 }
 
@@ -38,13 +39,13 @@ export const CATEGORY_META: Record<
   "natural-stone": {
     label: "Natural Stone",
     description:
-      "Genuine slate and quartz veneer, cut thin and flexible while retaining the authentic texture and colour variation of real stone.",
+      "Flexible natural stone veneer in slate, quartzite, sandstone, marble and limestone: real stone only 1.5–2 mm thick, in 610 × 1220 mm and 1220 × 2440 mm sheets for walls, furniture and curved surfaces.",
     tone: "slate",
   },
   "poly-stone": {
     label: "Poly Stone",
     description:
-      "Engineered mineral-composite surfaces designed for scale, tonal consistency and large-format architectural specification.",
+      "Flexible Poly Stone sheets with natural stone textures, 3–4 mm thick in large 1220 × 2440 mm formats, for wall cladding, decorative panels and furniture surfaces.",
     tone: "graphite",
   },
 };
@@ -69,7 +70,7 @@ function toProduct(r: CatalogueRecord): Product {
 
   const images: Product["images"] = img
     ? [
-        { kind: "sheet", tone, src: img.primary, thumbSrc: img.thumb, alt: `${r.name} stone surface` },
+        { kind: "sheet", tone, src: img.primary, thumbSrc: img.thumb, alt: `${r.name} ${r.typeLabel.toLowerCase()}` },
         ...(img.detail
           ? [
               {
@@ -77,7 +78,7 @@ function toProduct(r: CatalogueRecord): Product {
                 tone,
                 src: img.detail,
                 thumbSrc: img.detailThumb,
-                alt: `Close-up of the ${r.name} stone surface`,
+                alt: `Close-up of the ${r.name} ${r.typeLabel.toLowerCase()} surface texture`,
               },
             ]
           : []),
@@ -93,6 +94,7 @@ function toProduct(r: CatalogueRecord): Product {
     collection: r.collection,
     shortDescription: r.shortDescription,
     description: r.description,
+    typeLabel: r.typeLabel,
     thumbnailTone: tone,
     thumbnailSrc: img?.thumb,
     images,

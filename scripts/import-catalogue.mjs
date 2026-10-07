@@ -63,6 +63,23 @@ function parseCsv(text) {
 }
 
 const clean = (s) => (s ?? "").replace(/\s+/g, " ").trim();
+/** Like clean(), but keeps blank-line paragraph breaks. */
+const cleanParagraphs = (s) =>
+  (s ?? "")
+    .split(/\r?\n\s*\r?\n/)
+    .map(clean)
+    .filter(Boolean)
+    .join("\n\n");
+
+const TYPE_LABELS = {
+  "Slate & Quartzite": "Slate Veneer Sheet",
+  "Sand Stone": "Sandstone Veneer Sheet",
+  Marble: "Marble Veneer Sheet",
+  "Lime Stone": "Limestone Veneer Sheet",
+  Concrete: "Concrete-Look Stone Veneer Sheet",
+};
+const typeLabelFor = (category, collection) =>
+  category === "poly-stone" ? "Poly Stone Sheet" : (TYPE_LABELS[collection] ?? "Natural Stone Veneer Sheet");
 const slugify = (s) =>
   s.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 const fileKey = (s) => s.toLowerCase().replace(/&/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -228,7 +245,8 @@ for (const row of rows) {
   };
   const generated = describe(product);
   product.shortDescription = clean(row["Short Description"]) || generated.short;
-  product.description = clean(row["Full Description"]) || generated.long;
+  product.description = cleanParagraphs(row["Full Description"]) || generated.long;
+  product.typeLabel = typeLabelFor(product.category, product.collection);
   product.images = await processImages(row, cat, slug, code);
   records.push(product);
 }

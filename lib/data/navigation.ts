@@ -17,7 +17,7 @@ export const mainNav: NavItem[] = [
       {
         label: "Poly Stone",
         href: "/products/poly-stone",
-        description: "Engineered mineral-composite surfaces for scale and consistency.",
+        description: "Large-format Poly Stone sheets with natural stone textures.",
       },
     ],
   },

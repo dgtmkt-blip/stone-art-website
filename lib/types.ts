@@ -48,7 +48,10 @@ export interface Product {
   category: ProductCategorySlug;
   collection: string;
   shortDescription: string;
+  /** Full description; paragraphs are separated by a blank line. */
   description: string;
+  /** Search-friendly product type, e.g. "Sandstone Veneer Sheet". */
+  typeLabel: string;
   thumbnailTone: StoneTone;
   /** Grid-card photograph (4:5). When absent the card shows a `thumbnailTone` placeholder. */
   thumbnailSrc?: string;

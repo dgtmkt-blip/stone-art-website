@@ -144,7 +144,7 @@ export default function HomePage() {
               image="/images/site/home/natural-stone-world.webp"
               imageAlt="Bathroom with a natural stone veneer wall"
               title="Natural Stone"
-              description="Genuine slate and quartz veneer — authentic texture, colour and grain, cut thin and flexible."
+              description="Real slate, quartzite, sandstone and marble veneer, 1.5–2 mm thin and flexible, with authentic texture and grain."
             />
             <ProductWorldCard
               href="/products/poly-stone"
@@ -152,7 +152,7 @@ export default function HomePage() {
               image="/images/site/home/poly-stone-world.webp"
               imageAlt="Executive office with a large-format poly stone wall"
               title="Poly Stone"
-              description="Engineered mineral-composite surfaces built for scale, consistency and large-format specification."
+              description="Large-format Poly Stone sheets with natural stone textures, made for wall cladding and decorative panels."
             />
           </div>
         </Container>

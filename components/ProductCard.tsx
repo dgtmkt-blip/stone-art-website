@@ -12,7 +12,7 @@ export function ProductCard({ product }: { product: Product }) {
         <ProductMedia
           src={product.thumbnailSrc}
           tone={product.thumbnailTone}
-          alt={`${product.name} stone surface`}
+          alt={product.images[0]?.alt ?? `${product.name} ${product.typeLabel.toLowerCase()}`}
           sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="aspect-[4/5] bg-stone-200 transition-transform duration-700 ease-[var(--ease-editorial)] group-hover:scale-[1.06]"
         />
