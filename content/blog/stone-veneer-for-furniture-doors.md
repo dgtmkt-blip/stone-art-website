@@ -3,8 +3,8 @@ title: Stone Veneer on Furniture, Doors and Cabinets
 description: Flexible stone veneer gives furniture, doors and cabinet fronts the look of solid stone at a fraction of the weight. Where it works and how to design with it.
 date: 2026-10-08
 category: Design Ideas
-image: /images/site/home/mosaic-living-room.webp
-imageAlt: Living room with a travertine-look stone wall and matching furniture
+image: /images/blog/stone-veneer-for-furniture-doors.webp
+imageAlt: Finely fitted stone masonry close-up
 ---
 
 Not every surface you want in stone can carry the weight of stone. A wardrobe front, a door, a tabletop or a cabinet simply cannot hold a 20 mm slab. Flexible stone veneer solves that: a thin sheet of real stone on a flexible backing, light enough for furniture and strong enough to look right.

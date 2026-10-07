@@ -3,8 +3,8 @@ title: Choosing Stone Veneer: Slate, Sandstone, Marble
 description: A simple guide to slate, quartzite, sandstone, marble and limestone veneer: how each looks, where it suits, with Stoneart examples.
 date: 2026-10-07
 category: Guides
-image: /images/site/home/natural-stone-world.webp
-imageAlt: A bathroom wall clad in natural stone veneer
+image: /images/blog/choosing-stone-veneer-slate-sandstone-marble.webp
+imageAlt: Stacked rock wall with earthy natural tones
 ---
 
 Choosing stone veneer starts with choosing the stone. Slate, quartzite, sandstone, marble and limestone each have a distinct character, and the right one depends on the mood of the room, the light and how bold you want the wall to be.

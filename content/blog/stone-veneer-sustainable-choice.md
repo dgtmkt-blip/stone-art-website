@@ -3,8 +3,8 @@ title: Is Flexible Stone Veneer a Sustainable Choice?
 description: How thin stone veneer compares with solid stone and tiles on resource use, weight, transport and building load, and where the real environmental gains are.
 date: 2026-10-08
 category: Guides
-image: /images/site/banners/manufacturing.webp
-imageAlt: Rolls of thin stone veneer being produced in a manufacturing facility
+image: /images/blog/stone-veneer-sustainable-choice.webp
+imageAlt: Rustic stone wall topped with lush grass
 ---
 
 Buyers increasingly want to know what their choices are made of and what they cost the planet. Flexible stone veneer is often described as a greener option than solid stone slab, and the reasoning is straightforward: use less stone, carry less weight, and ask less of the building behind it.

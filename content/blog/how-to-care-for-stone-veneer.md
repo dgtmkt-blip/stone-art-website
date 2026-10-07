@@ -3,8 +3,8 @@ title: How to Care for Stone Veneer: Cleaning and Sealing
 description: Simple care that keeps flexible stone veneer looking its best for years: regular cleaning, which products to avoid, when to seal and how to handle stains.
 date: 2026-10-08
 category: Care
-image: /images/site/banners/packing.webp
-imageAlt: Clean, sealed stone veneer with soft daylight across the surface
+image: /images/blog/how-to-care-for-stone-veneer.webp
+imageAlt: Gabion stone wall of mixed natural rocks
 ---
 
 Flexible stone veneer is low maintenance, but it is still natural stone. A little regular care keeps the surface looking its best for years. The guidance below follows standard industry practice for stone care and works for most Stoneart sheets.

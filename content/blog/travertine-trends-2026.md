@@ -3,8 +3,8 @@ title: Travertine Walls: 2026 Interior Design Trends
 description: Travertine is back in a big way in 2026 interiors. The colours, applications and design ideas, and how flexible Poly Stone travertine fits in.
 date: 2026-10-08
 category: Design Ideas
-image: /images/site/home/mosaic-feature-walls.webp
-imageAlt: Bedroom with a warm travertine-look stone feature wall
+image: /images/blog/travertine-trends-2026.webp
+imageAlt: Textured stone wall with a soft lived-in look
 ---
 
 Travertine is one of the defining materials in interior design for 2026. It appears in bedrooms, bathrooms, kitchens and hospitality spaces, chosen for its warm colour, soft texture and quiet confidence. 2026 design press describes travertine as a core element in luxury interiors this year, with light and grey tones in particular leading the look.

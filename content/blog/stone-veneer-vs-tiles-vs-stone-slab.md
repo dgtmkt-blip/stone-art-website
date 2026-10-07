@@ -3,8 +3,8 @@ title: Stone Veneer vs Tiles vs Stone Slab
 description: How flexible stone veneer compares with tiles and solid stone slab on weight, flexibility, installation and look, and when each makes sense.
 date: 2026-10-07
 category: Guides
-image: /images/site/banners/installation.webp
-imageAlt: An installer pressing a thin stone veneer sheet onto a wall
+image: /images/blog/stone-veneer-vs-tiles-vs-stone-slab.webp
+imageAlt: Close-up of a textured stone wall with natural patterns
 ---
 
 Flexible stone veneer, tiles and solid stone slab can all give a wall a stone look, but they behave very differently. In short, veneer wins on weight and curves, slab wins on thickness and traditional use, and tiles sit in between.

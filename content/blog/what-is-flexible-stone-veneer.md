@@ -3,8 +3,8 @@ title: What Is Flexible Stone Veneer? A Plain Guide
 description: Flexible stone veneer is a thin layer of real stone on a bendable backing. How it is made, what it is made of and where it is used.
 date: 2026-10-07
 category: Guides
-image: /images/site/banners/about-the-product.webp
-imageAlt: A hand holding a thin, flexible sheet of natural stone veneer
+image: /images/blog/what-is-flexible-stone-veneer.webp
+imageAlt: Close-up of a rustic natural stone wall texture
 ---
 
 Flexible stone veneer is real stone, separated into a layer only 1 to 3 millimetres thick and bonded to a flexible backing. The result is a sheet that looks and feels like stone, but bends, weighs very little and can be cut with simple tools.

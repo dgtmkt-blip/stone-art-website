@@ -3,8 +3,8 @@ title: Using Stone Veneer on Exterior Walls and Facades
 description: Flexible stone veneer for outdoor walls, facades and porticos: how it stands up to Indian weather, what to confirm, and where it works best.
 date: 2026-10-08
 category: Applications
-image: /images/site/banners/about-technical-data.webp
-imageAlt: Exterior wall of a modern Indian home clad in warm sandstone veneer
+image: /images/blog/stone-veneer-exterior-facade.webp
+imageAlt: Stone building facade with arched entrances
 ---
 
 Flexible stone veneer is used outdoors in facades, porticos, boundary walls and entrance features. It gives a real stone look without the weight and structural load of a solid slab, which matters on upper floors, parapets and existing walls that were never built to carry heavy cladding.

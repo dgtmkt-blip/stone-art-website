@@ -3,8 +3,8 @@ title: Stone Veneer Price in India: A Buyer's Guide
 description: What drives the price of flexible stone veneer in India, how to read a quote, and the questions to ask before you order sheets or hire an installer.
 date: 2026-10-08
 category: Buyer's Guide
-image: /images/site/home/poly-stone-world.webp
-imageAlt: Panelart Decor showroom display of flexible stone veneer sheets
+image: /images/blog/stone-veneer-price-india-buyer-guide.webp
+imageAlt: Stone wall with autumn leaves showing texture
 ---
 
 "How much does flexible stone veneer cost?" is one of the most common questions buyers ask, and the honest answer is: it depends. The sheet price is only one part of a project's cost; the surface it is going on, the adhesive, the labour and the finishing all add up.

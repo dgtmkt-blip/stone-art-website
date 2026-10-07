@@ -3,8 +3,8 @@ title: Translucent Stone Veneer: Walls That Glow
 description: How translucent stone veneer with LED lighting is used for backlit feature walls, reception counters, bar fronts and furniture, with design ideas.
 date: 2026-10-08
 category: Design Ideas
-image: /images/site/banners/backing.webp
-imageAlt: Three stone veneer backing samples: polyester, translucent and fleece
+image: /images/blog/translucent-backlit-stone-veneer.webp
+imageAlt: Black and white textured wall of natural stones
 ---
 
 Translucent stone veneer takes a thin layer of real stone and places it on a transparent backing. Light shines through the stone from behind, picking up the colour, the veining and the grain. The result is a wall or counter that becomes an atmosphere, not just a surface.

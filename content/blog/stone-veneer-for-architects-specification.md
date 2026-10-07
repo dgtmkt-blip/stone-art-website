@@ -3,8 +3,8 @@ title: Flexible Stone Veneer for Architects: What to Specify
 description: A specifier's checklist for flexible stone veneer: sheet sizes, thickness, backing, substrate, adhesive, sealing, edges and the information to put in your drawings.
 date: 2026-10-08
 category: For Architects
-image: /images/site/banners/about-technical-data.webp
-imageAlt: Technical drawings, stone veneer samples and specification sheets on a desk
+image: /images/blog/stone-veneer-for-architects-specification.webp
+imageAlt: Ancient stone wall under a bright spring sky
 ---
 
 Specifying flexible stone veneer is close to specifying any other adhered thin cladding, with a few extra points on backing, sealing and large-format sheets. This guide gives architects, interior designers and specifiers a clear checklist of what to put in drawings, schedules and tender documents.

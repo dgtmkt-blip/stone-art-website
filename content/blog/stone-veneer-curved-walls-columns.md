@@ -3,8 +3,8 @@ title: Stone Veneer on Curved Walls, Columns and Pillars
 description: Flexible stone veneer bends around curved walls, columns and arches that solid stone cannot wrap. How it works and the design possibilities.
 date: 2026-10-08
 category: Applications
-image: /images/site/home/mosaic-curved-surfaces.webp
-imageAlt: Curved building facade clad in dark stone veneer
+image: /images/blog/stone-veneer-curved-walls-columns.webp
+imageAlt: Ancient stone ruins under a clear blue sky
 ---
 
 Solid stone slab is beautiful, but it does not bend. On a curved wall, a column or an arch, slab has to be cut into small pieces that then line up unevenly. Flexible stone veneer solves that problem by wrapping the whole shape in a single sheet of real stone.

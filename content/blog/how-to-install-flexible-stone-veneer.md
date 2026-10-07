@@ -3,8 +3,8 @@ title: How to Install Flexible Stone Veneer: Step by Step
 description: A plain, step-by-step guide to installing flexible stone veneer on a wall: tools, surface preparation, measuring, adhesive, pressing, finishing and curing.
 date: 2026-10-08
 category: Installation
-image: /images/site/banners/installation.webp
-imageAlt: Installer pressing a flexible stone veneer sheet onto a prepared wall
+image: /images/blog/how-to-install-flexible-stone-veneer.webp
+imageAlt: Textured stone and brick masonry wall
 ---
 
 Flexible stone veneer is one of the easier premium wall finishes to install. A good installer can cover a feature wall in a day. The method below follows standard industry practice and matches the general approach Stoneart recommends.

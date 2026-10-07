@@ -3,8 +3,8 @@ title: Flexible Stone Veneer in the Bathroom and Shower
 description: Using thin stone veneer in wet areas: why it suits bathrooms, which stones work, surface preparation, sealing and installer checks before you specify.
 date: 2026-10-08
 category: Applications
-image: /images/site/banners/about-why-stoneart.webp
-imageAlt: A bathroom wall clad in natural stone veneer beside a shower
+image: /images/blog/flexible-stone-veneer-bathroom.webp
+imageAlt: Natural stone wall with irregular beige and grey patterns
 ---
 
 Flexible stone veneer can be used in bathrooms and even inside shower enclosures, which is one of its most popular uses in Indian homes. The sheet is thin, light and bends to wrap around niches and corners that solid stone slab cannot reach.
