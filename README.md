@@ -31,6 +31,7 @@ All business content lives in `lib/data/`, separate from UI components:
 
 - `lib/data/catalogue.json` + `lib/data/products.ts` — the product catalogue (real data, **generated** — see "Updating the product catalogue" below; don't hand-edit the JSON)
 - `lib/data/projects.ts` — project gallery entries (**currently placeholder data**)
+- `content/blog/*.md` — blog articles (`lib/blog.ts` reads them). Each file starts with a `---` settings block (title, description, date, category, image, imageAlt, optional updated) followed by the article in plain Markdown (`##`/`###` headings, lists, `[links](/path)`, pipe tables, **bold**/*italic*). Add a new post by adding a new `.md` file here — no code changes needed.
 - `lib/data/navigation.ts` — global nav + footer structure
 - `lib/data/site-settings.ts` — company info, contact details, material disclaimer
 

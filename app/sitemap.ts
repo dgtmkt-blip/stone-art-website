@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
+import { getAllPosts } from "@/lib/blog";
 import { allProducts } from "@/lib/data/products";
-import { projects } from "@/lib/data/projects";
 
 export const dynamic = "force-static";
 
@@ -19,26 +19,15 @@ const staticRoutes = [
   "/backing",
   "/packing",
   "/installation",
-  "/projects",
+  "/blog",
   "/contact",
 ];
 
+// No lastModified: a build-time date on every URL would be inaccurate, and search engines ignore dates they can't trust.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
-  const productRoutes = allProducts.map((p) => ({
-    url: `${SITE_URL}/products/${p.category}/${p.slug}`,
-    lastModified: now,
-  }));
-
-  const projectRoutes = projects.map((p) => ({
-    url: `${SITE_URL}/projects/${p.slug}`,
-    lastModified: now,
-  }));
-
   return [
-    ...staticRoutes.map((route) => ({ url: `${SITE_URL}${route}`, lastModified: now })),
-    ...productRoutes,
-    ...projectRoutes,
+    ...staticRoutes.map((route) => ({ url: `${SITE_URL}${route}` })),
+    ...allProducts.map((p) => ({ url: `${SITE_URL}/products/${p.category}/${p.slug}` })),
+    ...getAllPosts().map((p) => ({ url: `${SITE_URL}/blog/${p.slug}`, lastModified: p.updated ?? p.date })),
   ];
 }
